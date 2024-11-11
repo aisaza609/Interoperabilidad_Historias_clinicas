@@ -30,7 +30,7 @@ Para validar la funcionalidad y efectividad de la solución, se ha implementado 
 
 
 4. **Módulo de Seguridad y Autenticación**:
-   - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE, esa informacion en sacada de datos de minsalu, encontada tambien en el github 'Datasets externos/Prestadores_Reps.csv'
+   - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE, esa informacion en sacada de datos de minsalu, encontada tambien en el github `Datasets externos/Prestadores_Reps.csv`
    - **Protección de Datos**: La blockchain protege los datos del paciente contra modificaciones no autorizadas, reduciendo el riesgo de pérdida de información durante los traslados.
 
 # Modelos Descriptivo y Predictivo
@@ -45,7 +45,7 @@ Nuestra solución incorpora dos modelos clave para analizar y optimizar el flujo
 
 2. **Modelo Predictivo**:
    - **Propósito**: Basado en datos de tres hospitales, este modelo predictivo se integra en la red blockchain y analiza en tiempo real las necesidades de cada paciente. Su objetivo es sugerir el hospital adecuado para su traslado según su estado de salud, nivel de atención requerido y su EPS.
-   - **Métodos y Métricas**: el modelo predictivo evalúa la probabilidad de que un paciente requiera traslado, priorizando aquellos en estado crítico. Las métricas clave incluyen precisión en la asignación del hospital adecuado y tiempos estimados de traslado, mejorando la eficacia en la respuesta de atención médica.
+   - **Métodos y Métricas**: el modelo predictivo evalúa la probabilidad de que un paciente requiera traslado, priorizando aquellos en estado crítico, para ello tambien usamos el dataset de los codigos diagnosticos `` Las métricas clave incluyen precisión en la asignación del hospital adecuado y tiempos estimados de traslado, mejorando la eficacia en la respuesta de atención médica.
    - **Impacto**: Este modelo optimiza los traslados y reduce los tiempos de espera, asegurando que cada paciente reciba la atención correcta en el hospital que cuenta con los recursos necesarios para su condición, mejorando así la continuidad y calidad de la atención en el sistema de salud.
 
 
