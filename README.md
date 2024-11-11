@@ -41,6 +41,7 @@ Nuestra solución incorpora dos modelos clave para analizar y optimizar el flujo
    - **Propósito**: Este modelo se desarrolló para evaluar la magnitud de la problemática, específicamente en cuanto a la cantidad de pacientes que requieren traslados según su EPS y el nivel de atención necesario. Se realizó un análisis de datos de dos hospitales, lo cual permite entender patrones en la demanda de atención de mayor complejidad y medir el impacto de la falta de recursos en la continuidad de la atención.
    - **Métodos y Métricas**: A través de un análisis estadístico de los datos históricos, el modelo descriptivo mide la frecuencia de traslados y la correlación entre la EPS del paciente y los niveles de atención requeridos. Las métricas clave incluyen el porcentaje de pacientes trasladados y las especialidades con mayor demanda de traslado, proporcionando una visión detallada del problema.
    - **Nota Importante**: Este modelo es solo para análisis y comprensión del contexto; **no se incorpora en la red blockchain**, ya que su propósito es explorar la magnitud de la situación actual.
+   - **Repositorio**: Puedes encontrar el modelo descriptivo en el archivo de GitHub titulado `Analisis_Descriptivo_de_Traslados_en_los_Hospitales.ipynb`.
 
 2. **Modelo Predictivo**:
    - **Propósito**: Basado en datos de tres hospitales, este modelo predictivo se integra en la red blockchain y analiza en tiempo real las necesidades de cada paciente. Su objetivo es sugerir el hospital adecuado para su traslado según su estado de salud, nivel de atención requerido y su EPS.
