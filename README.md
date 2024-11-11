@@ -33,7 +33,21 @@ Para validar la funcionalidad y efectividad de la solución, se ha implementado 
    - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE.
    - **Protección de Datos**: La blockchain protege los datos del paciente contra modificaciones no autorizadas, reduciendo el riesgo de pérdida de información durante los traslados.
 
----
+# Modelos Descriptivo y Predictivo
 
-Esta arquitectura asegura que cada hospital y clínica cuente con información precisa y actualizada sobre el historial médico de los pacientes, lo cual permite una atención continua y de calidad. Al integrar modelos predictivos, la red blockchain también optimiza el flujo de pacientes y asegura que reciban la atención correcta en el lugar adecuado.
+Nuestra solución incorpora dos modelos clave para analizar y optimizar el flujo de pacientes en el sistema de salud, aunque sólo el modelo predictivo se integra en la red blockchain:
+
+1. **Modelo Descriptivo**:
+   - **Propósito**: Este modelo se desarrolló para evaluar la magnitud de la problemática, específicamente en cuanto a la cantidad de pacientes que requieren traslados según su EPS y el nivel de atención necesario. Se realizó un análisis de datos de dos hospitales, lo cual permite entender patrones en la demanda de atención de mayor complejidad y medir el impacto de la falta de recursos en la continuidad de la atención.
+   - **Métodos y Métricas**: A través de un análisis estadístico de los datos históricos, el modelo descriptivo mide la frecuencia de traslados y la correlación entre la EPS del paciente y los niveles de atención requeridos. Las métricas clave incluyen el porcentaje de pacientes trasladados y las especialidades con mayor demanda de traslado, proporcionando una visión detallada del problema.
+   - **Nota Importante**: Este modelo es solo para análisis y comprensión del contexto; **no se incorpora en la red blockchain**, ya que su propósito es explorar la magnitud de la situación actual.
+
+2. **Modelo Predictivo**:
+   - **Propósito**: Basado en datos de tres hospitales, este modelo predictivo se integra en la red blockchain y analiza en tiempo real las necesidades de cada paciente. Su objetivo es sugerir el hospital adecuado para su traslado según su estado de salud, nivel de atención requerido y su EPS.
+   - **Métodos y Métricas**: Utilizando algoritmos de machine learning, el modelo predictivo evalúa la probabilidad de que un paciente requiera traslado, priorizando aquellos en estado crítico. Las métricas clave incluyen precisión en la asignación del hospital adecuado y tiempos estimados de traslado, mejorando la eficacia en la respuesta de atención médica.
+   - **Impacto**: Este modelo optimiza los traslados y reduce los tiempos de espera, asegurando que cada paciente reciba la atención correcta en el hospital que cuenta con los recursos necesarios para su condición, mejorando así la continuidad y calidad de la atención en el sistema de salud.
+
+
+
+
 
