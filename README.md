@@ -5,3 +5,27 @@ En Colombia, el sistema de salud enfrenta desafíos significativos en la continu
 Nuestro proyecto propone una solución innovadora basada en tecnología blockchain para mejorar la interoperabilidad de Historias Clínicas Electrónicas (HCE) entre hospitales y clínicas en Colombia. Con esta red blockchain, se garantiza que la historia clínica de cada paciente esté disponible en tiempo real, accesible de forma segura y sin duplicación, independientemente de la ubicación geográfica de las instituciones de salud. La solución incluye un modelo predictivo que, a partir del análisis de datos en tiempo real, dirige a los pacientes al hospital más adecuado según su estado de salud y su EPS, asegurando así una atención continua y de calidad.
 
 Esta plataforma no solo optimiza los traslados y la asignación de recursos médicos, sino que también reduce errores y mejora la seguridad en el manejo de información clínica, ofreciendo una solución escalable y adaptable a las necesidades del sistema de salud colombiano.
+#Arquitectura de la Solución
+La solución propuesta se basa en una red blockchain que permite la interoperabilidad entre diferentes hospitales y clínicas en Colombia, asegurando que la información clínica de los pacientes esté disponible en tiempo real y de manera segura. Esta red blockchain está diseñada para almacenar y compartir las Historias Clínicas Electrónicas (HCE) de los pacientes entre instituciones de salud de distintos niveles de atención.
+
+Para validar la funcionalidad y efectividad de la solución, se ha implementado una simulación utilizando datos de seis hospitales con diferentes niveles de atención. La arquitectura de la solución incluye los siguientes componentes clave:
+
+Red Blockchain para Interoperabilidad:
+
+Propósito: Facilitar el intercambio de HCE entre hospitales y clínicas de forma segura y descentralizada.
+Funcionamiento: Cada registro de paciente en la red es único y no puede ser alterado, garantizando la integridad de la información.
+Protocolos de Consenso: La red utiliza protocolos de consenso para validar la autenticidad de los datos, asegurando que solo entidades autorizadas (IPS, EPS y otros actores del sistema de salud) puedan acceder y actualizar la información.
+Simulación de los 6 Hospitales:
+
+Distribución por Niveles de Atención: Los hospitales simulados representan distintos niveles de atención (niveles 1, 2 y 3), lo cual permite observar el flujo y manejo de pacientes de acuerdo con la gravedad de sus condiciones y la disponibilidad de recursos.
+Datos Utilizados: La simulación emplea datos reales obtenidos de fuentes de datos abiertos y del Registro Especial de Prestadores de Servicios de Salud (REPS) de MinSalud, lo cual permite asignar correctamente el nivel hospitalario y evaluar la interoperabilidad de la red blockchain.
+Interacción en la Red: A través de la simulación, los hospitales pueden intercambiar información sobre el estado de salud del paciente y su historia clínica. Si un hospital de nivel 1 recibe a un paciente en estado crítico, el modelo predictivo recomienda un traslado a un hospital de mayor nivel que cuente con los recursos necesarios.
+Modelo Predictivo en Tiempo Real:
+
+Función: Analiza en tiempo real las necesidades de cada paciente, evaluando factores como su estado de salud actual, el tipo de atención requerida, y su EPS, para direccionarlo al hospital adecuado.
+Integración con Blockchain: Los resultados del modelo predictivo se registran en la blockchain, asegurando que los datos de traslado y atención estén disponibles y sean confiables para todos los actores del sistema.
+Optimización de Recursos: Este modelo permite a los hospitales anticiparse a la recepción de pacientes, optimizando el uso de recursos médicos y reduciendo el tiempo de espera para los pacientes.
+Módulo de Seguridad y Autenticación:
+
+Acceso Controlado: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE.
+Protección de Datos: La blockchain protege los datos del paciente contra modificaciones no autorizadas, reduciendo el riesgo de pérdida de información durante los traslados.
