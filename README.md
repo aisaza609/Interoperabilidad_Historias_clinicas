@@ -5,7 +5,8 @@ En Colombia, el sistema de salud enfrenta desafíos significativos en la continu
 Nuestro proyecto propone una solución innovadora basada en tecnología blockchain para mejorar la interoperabilidad de Historias Clínicas Electrónicas (HCE) entre hospitales y clínicas en Colombia. Con esta red blockchain, se garantiza que la historia clínica de cada paciente esté disponible en tiempo real, accesible de forma segura y sin duplicación, independientemente de la ubicación geográfica de las instituciones de salud. La solución incluye un modelo predictivo que, a partir del análisis de datos en tiempo real, dirige a los pacientes al hospital más adecuado según su estado de salud y su EPS, asegurando así una atención continua y de calidad.
 
 Esta plataforma no solo optimiza los traslados y la asignación de recursos médicos, sino que también reduce errores y mejora la seguridad en el manejo de información clínica, ofreciendo una solución escalable y adaptable a las necesidades del sistema de salud colombiano.
-#Arquitectura de la Solución
+
+# Arquitectura de la Solución
 La solución propuesta se basa en una red blockchain que permite la interoperabilidad entre diferentes hospitales y clínicas en Colombia, asegurando que la información clínica de los pacientes esté disponible en tiempo real y de manera segura. Esta red blockchain está diseñada para almacenar y compartir las Historias Clínicas Electrónicas (HCE) de los pacientes entre instituciones de salud de distintos niveles de atención.
 
 Para validar la funcionalidad y efectividad de la solución, se ha implementado una simulación utilizando datos de seis hospitales con diferentes niveles de atención. La arquitectura de la solución incluye los siguientes componentes clave:
