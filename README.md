@@ -10,22 +10,24 @@ Esta plataforma no solo optimiza los traslados y la asignación de recursos méd
 
 La solución propuesta se basa en una red **blockchain** que permite la interoperabilidad entre diferentes hospitales y clínicas en Colombia, asegurando que la información clínica de los pacientes esté disponible en tiempo real y de manera segura. Esta red blockchain está diseñada para almacenar y compartir las Historias Clínicas Electrónicas (HCE) de los pacientes entre instituciones de salud de distintos niveles de atención.
 
-Para validar la funcionalidad y efectividad de la solución, se ha implementado una **simulación** utilizando datos de **seis hospitales** con diferentes niveles de atención. La arquitectura de la solución incluye los siguientes componentes clave:
+Para validar la funcionalidad y efectividad de la solución, se ha implementado una **simulación** utilizando datos de **3 hospitales** con diferentes niveles de atención. La arquitectura de la solución incluye los siguientes componentes clave:
 
 1. **Red Blockchain para Interoperabilidad**:
    - **Propósito**: Facilitar el intercambio de HCE entre hospitales y clínicas de forma segura y descentralizada.
    - **Funcionamiento**: Cada registro de paciente en la red es único y no puede ser alterado, garantizando la integridad de la información.
    - **Protocolos de Consenso**: La red utiliza protocolos de consenso para validar la autenticidad de los datos, asegurando que solo entidades autorizadas (IPS, EPS y otros actores del sistema de salud) puedan acceder y actualizar la información.
 
-2. **Simulación de los 6 Hospitales**:
+2. **Simulación de los 3 Hospitales**:
    - **Distribución por Niveles de Atención**: Los hospitales simulados representan distintos niveles de atención (niveles 1, 2 y 3), lo cual permite observar el flujo y manejo de pacientes de acuerdo con la gravedad de sus condiciones y la disponibilidad de recursos.
    - **Datos Utilizados**: La simulación emplea datos reales obtenidos de fuentes de datos abiertos y del **Registro Especial de Prestadores de Servicios de Salud (REPS)** de MinSalud, lo cual permite asignar correctamente el nivel hospitalario y evaluar la interoperabilidad de la red blockchain.
    - **Interacción en la Red**: A través de la simulación, los hospitales pueden intercambiar información sobre el estado de salud del paciente y su historia clínica. Si un hospital de nivel 1 recibe a un paciente en estado crítico, el modelo predictivo recomienda un traslado a un hospital de mayor nivel que cuente con los recursos necesarios.
 
-3. **Modelo Predictivo en Tiempo Real**:
-   - **Función**: Analiza en tiempo real las necesidades de cada paciente, evaluando factores como su estado de salud actual, el tipo de atención requerida, y su EPS, para direccionarlo al hospital adecuado.
-   - **Integración con Blockchain**: Los resultados del modelo predictivo se registran en la blockchain, asegurando que los datos de traslado y atención estén disponibles y sean confiables para todos los actores del sistema.
-   - **Optimización de Recursos**: Este modelo permite a los hospitales anticiparse a la recepción de pacientes, optimizando el uso de recursos médicos y reduciendo el tiempo de espera para los pacientes.
+3. **Modelos Predictivo y Descriptivo en Tiempo Real**:
+   - **Modelo Descriptivo**: Se desarrolló un modelo descriptivo para evaluar la cantidad de pacientes que requerían traslados según su EPS y el nivel de atención necesario. Este análisis se llevó a cabo usando datos de dos hospitales específicos, permitiendo identificar patrones en la demanda de atención de mayor complejidad.
+   - **Modelo Predictivo**: Analiza en tiempo real las necesidades de cada paciente, evaluando factores como su estado de salud actual, el tipo de atención requerida, y su EPS, para direccionarlo al hospital adecuado.
+   - **Integración con Blockchain**: Los resultados de ambos modelos se registran en la blockchain, asegurando que los datos de traslado y atención estén disponibles y sean confiables para todos los actores del sistema.
+   - **Optimización de Recursos**: Estos modelos permiten a los hospitales anticiparse a la recepción de pacientes, optimizando el uso de recursos médicos y reduciendo el tiempo de espera para los pacientes.
+
 
 4. **Módulo de Seguridad y Autenticación**:
    - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE.
