@@ -30,7 +30,7 @@ Para validar la funcionalidad y efectividad de la solución, se ha implementado 
 
 
 4. **Módulo de Seguridad y Autenticación**:
-   - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE.
+   - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE, esa informacion en sacada de datos de minsalu, encontada tambien en el github 'Datasets externos/Prestadores_Reps.csv'
    - **Protección de Datos**: La blockchain protege los datos del paciente contra modificaciones no autorizadas, reduciendo el riesgo de pérdida de información durante los traslados.
 
 # Modelos Descriptivo y Predictivo
