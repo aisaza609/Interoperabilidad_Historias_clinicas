@@ -64,12 +64,9 @@ Se priorizó la normalización de tres hospitales, seleccionados para representa
 Los datasets cargados y utilizados en el código están disponibles en la siguiente carpeta de Google Drive: [Carpeta de Datasets en Drive](https://drive.google.com/drive/folders/1g_g7nNmjAK4MWKhcBxZKm9-tgX4TQUld?usp=drive_link).
 **AVANCE**: La información ha sido normalizada para su envío en la blockchain, facilitando la interoperabilidad. Se evaluó el nivel hospitalario, el servicio requerido y la necesidad de traslado, asegurando la adecuada referencia de pacientes en la red.
 
-
-
-# Dapp de Blockchain
    -**Minifabric, instrucciones de Instalación y Ejecución.**
-La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como sistema operativo.En este proyecto, Docker se utiliza para crear y gestionar un entorno de contenedores que permita desplegar la red blockchain de forma aislada y replicable. Esto asegura que todos los componentes necesarios se ejecuten en un entorno controlado, independientemente de las configuraciones individuales del sistema anfitrión. A continuación se detallan los pasos para replicar el entorno de instalación en este sistema.
-1. Ingrese al terminal de la maquina virtual e ingrese los siguientes comandos:
+La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como sistema operativo.En este proyecto, Docker se utiliza para crear y gestionar un entorno de contenedores que permita desplegar la red blockchain de forma aislada y replicable. Esto asegura que todos los componentes necesarios se ejecuten en un entorno controlado, independientemente de las configuraciones individuales del sistema anfitrión. A continuación se detallan los pasos para replicar el entorno de instalación en este sistema linux.
+1. Ingrese al terminal del ordenador e ingrese los siguientes comandos:
    
 -**1.1 Actualizar los paquetes del sistema:**
    <pre>
@@ -100,11 +97,11 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docke
    docker --version
    </pre>
 
-   -**1.8 Permitir que Docker se ejecute sin sudo:** Este paso permite ejecutar Docker sin usar sudo cada vez. Para hacerlo, agrega tu usuario al grupo de Docker:
+   -**1.8 (opcional) Permitir que Docker se ejecute sin sudo:** Este paso permite ejecutar Docker sin usar sudo cada vez. Para hacerlo, agrega tu usuario al grupo de Docker:
    <pre>
    usermod -aG docker $USER```
    </pre>
-#NOTA: Después de ejecutar este comando, cierra sesión o reinicia la máquina para que el cambio surta efecto.
+##NOTA: Después de ejecutar este comando, cierra sesión o reinicia la máquina para que el cambio surta efecto.
 
 Instalacion de Docker Compose 
    -**1.9 Descargar Docker Compose:** Permite gestionar y coordinar múltiples contenedores Docker, facilitando el despliegue de entornos complejos como nuestra red blockchain en un solo paso.
