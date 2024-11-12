@@ -55,7 +55,7 @@ Se priorizó la normalización de tres hospitales, seleccionados para representa
    - Dataset resultante del análisis descriptivo: [`Dataset de datos abiertos/Hospital_Pasto_v1.xlsx`](Dataset%20de%20datos%20abiertos/Hospital_Pasto_v1.xlsx).
    - Proceso de normalización: Disponible en [`Normalizacion_Dataset_Pasto.ipynb`](Normalizacion_Dataset_Pasto.ipynb).
 
-3. **Hospital Universitario Hernando Moncaleano Perdomo, Neiva**:
+3. **Hospital Universitario Hernando Moncaleano Perdomo, Neiva** (Nivel 3):
    - Dataset: [Perfil de morbilidad](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Perfil-de-morbilidad/5c4n-qdbv/about_data)
    - Proceso de normalización: Disponible en [`Normalizacion_Dataset_Neiva.ipynb`](Normalizacion_Dataset_Neiva.ipynb).
 
