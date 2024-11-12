@@ -47,13 +47,57 @@ Nuestra solución incorpora un sistema de recomendación para analizar y optimiz
    - **Impacto**: Este sistema optimiza los traslados y reduce los tiempos de espera, asegurando que cada paciente reciba la atención correcta en el hospital con los recursos necesarios, mejorando la continuidad y calidad de la atención.
 
 # Dapp de Blockchain
-
+   -**Minifabric**
+   Para la red descentralizada en blockchain 
 # Datos Utilizados 
 
 # Requisitos de Software y Herramientas
 
-# Instrucciones de Instalación y Ejecución
 
+# Instrucciones de Instalación y Ejecución
+La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como sistema operativo.En este proyecto, Docker se utiliza para crear y gestionar un entorno de contenedores que permita desplegar la red blockchain de forma aislada y replicable. Esto asegura que todos los componentes necesarios se ejecuten en un entorno controlado, independientemente de las configuraciones individuales del sistema anfitrión. A continuación se detallan los pasos para replicar el entorno de instalación en este sistema.
+Ingrese al terminal de la maquina virtual e ingrese los siguientes comandos:
+   -**1. Actualizar los paquetes del sistema:**
+   
+   sudo apt update
+   sudo apt upgrade -y
+   
+   -**2. Instalar paquetes necesarios:** Docker requiere algunas dependencias adicionales, como apt-transport-https, ca-certificates, y curl. Estas permiten descargar paquetes de repositorios seguros y gestionar conexiones HTTPS:
+   
+   sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+   
+   -**3. Agregar la clave GPG de Docker:** Esto permite que el sistema confíe en los paquetes de Docker que se van a instalar.
+   
+   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o                  /usr/share/keyrings/docker-archive-keyring.gpg
+   
+   -**4. Agregar el repositorio de Docker:** Este paso configura el repositorio de Docker para que se pueda instalar la versión más reciente.
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+   -**5. Actualizar los paquetes nuevamente:** Después de agregar el repositorio, actualiza la lista de paquetes.
+
+   apt update
+
+   -**6. Instalar Docker:** Ahora, instala Docker y Docker Compose para gestionar los contenedores en los que se ejecutará la red blockchain.
+
+   apt install docker-ce docker-ce-cli containerd.io -y
+
+   -**Verificar la instalación de Docker:** Para comprobar que Docker se instaló correctamente, ejecuta:
+
+   docker --version
+
+   -**Permitir que Docker se ejecute sin sudo:** Este paso permite ejecutar Docker sin usar sudo cada vez. Para hacerlo, agrega tu usuario al grupo de Docker:
+
+   usermod -aG docker $USER
+
+NOTA: Después de ejecutar este comando, cierra sesión o reinicia la máquina para que el cambio surta efecto.
+
+
+
+
+
+
+   
 
 
 
