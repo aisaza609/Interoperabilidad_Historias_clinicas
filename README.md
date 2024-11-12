@@ -142,6 +142,7 @@ Instalacion de Docker Compose
       
   ```netname: "network1"```
   
+  
    **cat ./org2/spec.yaml**
 ```fabric:```
 
@@ -251,6 +252,7 @@ Desde el directorio``cd ../org2``
 ``minifab approve,discover,commit``
 
 **Resultado esperado**
+
 ``network3``
 
 ``ca1.org3.example.com``
