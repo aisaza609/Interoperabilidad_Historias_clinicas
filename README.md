@@ -56,54 +56,142 @@ Nuestra solución incorpora un sistema de recomendación para analizar y optimiz
 
 # Instrucciones de Instalación y Ejecución
 La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como sistema operativo.En este proyecto, Docker se utiliza para crear y gestionar un entorno de contenedores que permita desplegar la red blockchain de forma aislada y replicable. Esto asegura que todos los componentes necesarios se ejecuten en un entorno controlado, independientemente de las configuraciones individuales del sistema anfitrión. A continuación se detallan los pasos para replicar el entorno de instalación en este sistema.
-Ingrese al terminal de la maquina virtual e ingrese los siguientes comandos:
-   -**1. Actualizar los paquetes del sistema:**
+1. Ingrese al terminal de la maquina virtual e ingrese los siguientes comandos:
+   -**1.1 Actualizar los paquetes del sistema:**
    
    ```apt update```
    ```apt upgrade -y```
    
-   -**2. Instalar paquetes necesarios:** Docker requiere algunas dependencias adicionales, como apt-transport-https, ca-certificates, y curl. Estas permiten descargar paquetes de repositorios seguros y gestionar conexiones HTTPS:
+   -**1.2 Instalar paquetes necesarios:** Docker requiere algunas dependencias adicionales, como apt-transport-https, ca-certificates, y curl. Estas permiten descargar paquetes de repositorios seguros y gestionar conexiones HTTPS:
    
    ```apt install apt-transport-https ca-certificates curl software-properties-common -y```
    
-   -**3. Agregar la clave GPG de Docker:** Esto permite que el sistema confíe en los paquetes de Docker que se van a instalar.
+   -**1.3 Agregar la clave GPG de Docker:** Esto permite que el sistema confíe en los paquetes de Docker que se van a instalar.
    
   ```curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg```
    
-   -**4. Agregar el repositorio de Docker:** Este paso configura el repositorio de Docker para que se pueda instalar la versión más reciente.
+   -**1.4 Agregar el repositorio de Docker:** Este paso configura el repositorio de Docker para que se pueda instalar la versión más reciente.
 
 ```echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null```
 
-   -**5. Actualizar los paquetes nuevamente:** Después de agregar el repositorio, actualiza la lista de paquetes.
+   -**1.5 Actualizar los paquetes nuevamente:** Después de agregar el repositorio, actualiza la lista de paquetes.
 
    ```apt update```
 
-   -**6. Instalar Docker:** Ahora, instala Docker y Docker Compose para gestionar los contenedores en los que se ejecutará la red blockchain.
+   -**1.6 Instalar Docker:** Ahora, instala Docker y Docker Compose para gestionar los contenedores en los que se ejecutará la red blockchain.
 
    ```apt install docker-ce docker-ce-cli containerd.io -y```
 
-   **7. Verificar la instalación de Docker:** Para comprobar que Docker se instaló correctamente, ejecuta:
+   **1.7 Verificar la instalación de Docker:** Para comprobar que Docker se instaló correctamente, ejecuta:
 
    ```docker --version```
 
-   -**8. Permitir que Docker se ejecute sin sudo:** Este paso permite ejecutar Docker sin usar sudo cada vez. Para hacerlo, agrega tu usuario al grupo de Docker:
+   -**1.8 Permitir que Docker se ejecute sin sudo:** Este paso permite ejecutar Docker sin usar sudo cada vez. Para hacerlo, agrega tu usuario al grupo de Docker:
 
    ```usermod -aG docker $USER```
 
 NOTA: Después de ejecutar este comando, cierra sesión o reinicia la máquina para que el cambio surta efecto.
 
 Instalacion de Docker Compose 
-   -**9. Descargar Docker Compose:** Permite gestionar y coordinar múltiples contenedores Docker, facilitando el despliegue de entornos complejos como nuestra red blockchain en un solo paso.
+   -**1.9 Descargar Docker Compose:** Permite gestionar y coordinar múltiples contenedores Docker, facilitando el despliegue de entornos complejos como nuestra red blockchain en un solo paso.
 
 ```sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose```
 
-   -**10. Dar permisos de ejecución:** Permite que Docker Compose se ejecute como programa.
+   -**1.10 Dar permisos de ejecución:** Permite que Docker Compose se ejecute como programa.
+   
    ```sudo chmod +x /usr/local/bin/docker-compose```
-   -**11. Verificacion final:** Para asegurarte de que Docker y Docker Compose funcionan correctamente:
+   
+   -**1.11 Verificacion final:** Para asegurarte de que Docker y Docker Compose funcionan correctamente:
+   
    ```docker --version```
    ```docker-compose --version```
 
-   
+2. Una vez verificados los anteriores requisitos detallaremos la creacion de una red Hyperledger Fabric (HLF) usando Minifabric. La utilizaremos para construir una red HLF con dos canales de aplicación, tres organizaciones y dos nodos ordenadores. Se emplea Docker y Docker Compose para gestionar los contenedores de HLF y sus componentes.
+
+   -**2.1 Definiremos las 3 redes de la siguiente manera:** nuevamente abriremos o en el mismo terminal que tenemos abierto usaremos 3 directorios org1, org2 y org3.Una red se define usando el spec.yamlarchivo . Es muy recomendable descargar el archivo de [plantilla del repositorio de Github de Minifabric](https://github.com/hyperledger-labs/minifabric/blob/main/spec.yaml) y editarlo de la siguiente manera:
+   **cat ./org1/spec.yaml**
+```fabric:```
+  ```cas:```
+  ```- "ca1.org1.example.com"```
+  ```peers:```
+  ```- "peer1.org1.example.com"```
+  ```- "peer2.org1.example.com"```
+  ```orderers:```
+  ```- "orderer1.example.com"```
+  ```settings:```
+    ```ca:```
+      ```FABRIC_LOGGING_SPEC: DEBUG```
+   ```peer:```
+      ```FABRIC_LOGGING_SPEC: DEBUG```
+    ```orderer:```
+      ```FABRIC_LOGGING_SPEC: DEBUG```
+  ```netname: "network1"```
+   **cat ./org2/spec.yaml**
+```fabric:```
+  ```cas:```
+  ```- "ca1.org2.example.com"```
+  ```peers:``` 
+  ```- "peer1.org2.example.com"```
+  ```- "peer2.org2.example.com"```
+  ```settings:```
+    ```ca:```
+      ```FABRIC_LOGGING_SPEC: DEBUG```
+    ```peer:```
+      ```FABRIC_LOGGING_SPEC: DEBUG```
+  ```netname: "network2"```
+   **cat ./org3/spec.yaml**
+```fabric:```
+  ```cas:```
+  ```- "ca1.org3.example.com"```
+  ```peers:``` 
+  ```- "peer1.org3.example.com"```
+  ```- "peer2.org3.example.com"```
+  ```orderers:```
+  ```- "orderer2.example.com"```
+  ```settings:```
+    ```ca:```
+      ```FABRIC_LOGGING_SPEC: DEBUG```
+    ```peer:```
+      ```FABRIC_LOGGING_SPEC: DEBUG```
+    ```orderer:```
+      ```FABRIC_LOGGING_SPEC: DEBUG```
+  ```netname: "network3"```
+Hay que asegurarse de configurar 3 nombres de red diferentes
+**Lanzamiento de la red 1 y 2**
+
+Desde el directorio: ```cd org1```
+```minifab netup -e 7100 -o org1.example.com -i 2.2 -l nodo -s Couchdb```
+```minifab crear,unir -c canal1```
+``minifab instalar, aprobar, confirmar -n simple -l nodo -v 1.0 -p ' "init", "a", "200", "b", "300" '``
+
+Desde el directorio: ``cd ../org3``
+``minifab netup -e 7300 -o org3.example.com -i 2.2 -l nodo -s couchdb``
+``minifab crear,unirse -c channel2``
+``minifab instalar,aprobar,confirmar -n simple -l nodo -v 1.0 -p '"init", "a", "200", "b", "300"'``
+
+**Red de lanzamiento 2**
+
+Desde el ``cd ../org2`` 
+``minifab netup -e 7200 -o org2.example.com -i 2.2 -l nodo -s couchdb``
+
+**Unirse a Network2 a los canales**
+
+``cd ../org1`` 
+``cp ../org2/vars/JoinRequest_org2-example-com.json ./vars/NewOrgJoinRequest.json``
+``minifab orgjoin,profilegen``
+
+``cd ../org3`` 
+``cp ../org2/vars/JoinRequest_org2-example-com.json ./vars/NewOrgJoinRequest.json``
+``minifab orgjoin,profilegen``
+
+**Unir pares de Org2 a los canales**
+
+`` ``
+
+
+
+
+
 
 
 
