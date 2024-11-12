@@ -110,68 +110,116 @@ Instalacion de Docker Compose
 
    -**2.1 Definiremos las 3 redes de la siguiente manera:** nuevamente abriremos o en el mismo terminal que tenemos abierto usaremos 3 directorios org1, org2 y org3.Una red se define usando el spec.yamlarchivo . Es muy recomendable descargar el archivo de [plantilla del repositorio de Github de Minifabric](https://github.com/hyperledger-labs/minifabric/blob/main/spec.yaml) y editarlo de la siguiente manera:
    **cat ./org1/spec.yaml**
+``
 ```fabric:```
+
   ```cas:```
+  
   ```- "ca1.org1.example.com"```
+  
   ```peers:```
+  
   ```- "peer1.org1.example.com"```
+  
   ```- "peer2.org1.example.com"```
+  
   ```orderers:```
+  
   ```- "orderer1.example.com"```
+  
   ```settings:```
+  
     ```ca:```
+    
       ```FABRIC_LOGGING_SPEC: DEBUG```
+      
    ```peer:```
+   
       ```FABRIC_LOGGING_SPEC: DEBUG```
+      
     ```orderer:```
+    
       ```FABRIC_LOGGING_SPEC: DEBUG```
+      
   ```netname: "network1"```
+  ``
+  
    **cat ./org2/spec.yaml**
 ```fabric:```
+
   ```cas:```
+  
   ```- "ca1.org2.example.com"```
+  
   ```peers:``` 
+  
   ```- "peer1.org2.example.com"```
+  
   ```- "peer2.org2.example.com"```
+  
   ```settings:```
+  
     ```ca:```
+    
       ```FABRIC_LOGGING_SPEC: DEBUG```
+      
     ```peer:```
+    
       ```FABRIC_LOGGING_SPEC: DEBUG```
+      
   ```netname: "network2"```
+  
    **cat ./org3/spec.yaml**
 ```fabric:```
+
   ```cas:```
+  
   ```- "ca1.org3.example.com"```
+  
   ```peers:``` 
+  
   ```- "peer1.org3.example.com"```
+  
   ```- "peer2.org3.example.com"```
+  
   ```orderers:```
+  
   ```- "orderer2.example.com"```
+  
   ```settings:```
+  
     ```ca:```
       ```FABRIC_LOGGING_SPEC: DEBUG```
+      
     ```peer:```
+    
       ```FABRIC_LOGGING_SPEC: DEBUG```
+      
     ```orderer:```
+    
       ```FABRIC_LOGGING_SPEC: DEBUG```
+      
   ```netname: "network3"```
+  
 Hay que asegurarse de configurar 3 nombres de red diferentes
 **Lanzamiento de la red 1 y 2**
 
 Desde el directorio: ```cd org1```
+
 ```minifab netup -e 7100 -o org1.example.com -i 2.2 -l nodo -s Couchdb```
-```minifab crear,unir -c canal1```
-``minifab instalar, aprobar, confirmar -n simple -l nodo -v 1.0 -p ' "init", "a", "200", "b", "300" '``
+```minifab crear,unir -c channell1```
+``minifab install, approve, commit -n simple -l nodo -v 1.0 -p ' "init", "a", "200", "b", "300" '``
 
 Desde el directorio: ``cd ../org3``
+
 ``minifab netup -e 7300 -o org3.example.com -i 2.2 -l nodo -s couchdb``
-``minifab crear,unirse -c channel2``
-``minifab instalar,aprobar,confirmar -n simple -l nodo -v 1.0 -p '"init", "a", "200", "b", "300"'``
+``minifab create,join -c channel2``
+``minifab install,approve,commit -n simple -l nodo -v 1.0 -p '"init", "a", "200", "b", "300"'``
 
 **Red de lanzamiento 2**
 
-Desde el ``cd ../org2`` 
+Desde el directorio ``cd ../org2`` 
+
 ``minifab netup -e 7200 -o org2.example.com -i 2.2 -l nodo -s couchdb``
 
 **Unirse a Network2 a los canales**
@@ -186,10 +234,65 @@ Desde el ``cd ../org2``
 
 **Unir pares de Org2 a los canales**
 
-`` ``
+Desde el directorio``cd ../org2``
 
+``cp ../org1/vars/profiles/endpoints.yaml vars``
+``minifab nodeimport,join -c channel1``
 
+``cp ../org3/vars/profiles/endpoints.yaml vars``
+``minifab nodeimport,join -c channel2``
 
+**Instalar Chaincode en Org2**
+
+``minifab install,approve -n simple -v 1.0 -p ' "init", "a", "200", "b", "300" ' -c channel1``
+
+``cd ../org1``
+``minifab approve,discover,commit``
+
+``cd ../org3``
+``minifab approve,discover,commit``
+
+**Resultado esperado**
+
+``network3``
+
+``ca1.org3.example.com``
+
+``orderer2.example.com``
+
+``peer2.org3.example.com``
+
+``peer1.org3.example.com``
+
+``peer2.org3.example.com.couchdb``
+
+``peer1.org3.example.com.couchdb``
+
+``network2``
+
+``ca1.org2.example.com``
+
+``peer2.org2.example.com``
+
+``peer1.org2.example.com``
+
+``peer2.org2.example.com.couchdb``
+
+``peer1.org2.example.com.couchdb``
+
+``network1``
+
+``ca1.org1.example.com``
+
+``orderer1.example.com``
+
+``peer2.org1.example.com``
+
+``peer1.org1.example.com``
+
+``peer2.org1.example.com.couchdb``
+
+``peer1.org1.example.com.couchdb``
 
 
 
