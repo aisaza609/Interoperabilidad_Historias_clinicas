@@ -31,7 +31,7 @@ Para validar la funcionalidad y efectividad de la solución, se ha implementado 
    - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE, con información sacada de datos de MinSalud y disponible en el archivo `Datasets externos/Prestadores_Reps.csv` en GitHub.
    - **Protección de Datos**: La blockchain protege los datos del paciente contra modificaciones no autorizadas, reduciendo el riesgo de pérdida de información durante los traslados.
 
-# Sistema de Recomendación
+# Sistema de Recomendación y Analisis Descritivo
 
 Nuestra solución incorpora un sistema de recomendación para analizar y optimizar el flujo de pacientes en el sistema de salud:
 
