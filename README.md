@@ -237,7 +237,7 @@ Desde el diretorio ``cd ../org3``
 </pre>
 
 **Resultado esperado**
-
+**Si no se ve el resultado se debe lanzar de nuevo la red.** 
 <pre>
 network3
 ca1.org3.example.com
