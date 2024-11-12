@@ -64,9 +64,7 @@ Se priorizó la normalización de tres hospitales, seleccionados para representa
 Los datasets cargados y utilizados en el código están disponibles en la siguiente carpeta de Google Drive: [Carpeta de Datasets en Drive](https://drive.google.com/drive/folders/1g_g7nNmjAK4MWKhcBxZKm9-tgX4TQUld?usp=drive_link).
 
 # Dapp de Blockchain
-   -**Minifabric**
-   Para la red descentralizada en blockchain 
-# Instrucciones de Instalación y Ejecución
+   -**Minifabric, instrucciones de Instalación y Ejecución.**
 La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como sistema operativo.En este proyecto, Docker se utiliza para crear y gestionar un entorno de contenedores que permita desplegar la red blockchain de forma aislada y replicable. Esto asegura que todos los componentes necesarios se ejecuten en un entorno controlado, independientemente de las configuraciones individuales del sistema anfitrión. A continuación se detallan los pasos para replicar el entorno de instalación en este sistema.
 1. Ingrese al terminal de la maquina virtual e ingrese los siguientes comandos:
    
