@@ -79,11 +79,13 @@ La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como si
    apt install apt-transport-https ca-certificates curl software-properties-common -y
    </pre>
    -**1.3 Agregar la clave GPG de Docker:** Esto permite que el sistema confíe en los paquetes de Docker que se van a instalar.
+
    <pre>
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
    </pre>
+   
    -**1.4 Agregar el repositorio de Docker:** Este paso configura el repositorio de Docker para que se pueda instalar la versión más reciente.
-<pre>
+   <pre>
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 </pre>
    -**1.5 Actualizar los paquetes nuevamente:** Después de agregar el repositorio, actualiza la lista de paquetes.
