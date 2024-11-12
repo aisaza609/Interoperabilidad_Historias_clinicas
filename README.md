@@ -59,8 +59,8 @@ La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como si
 Ingrese al terminal de la maquina virtual e ingrese los siguientes comandos:
    -**1. Actualizar los paquetes del sistema:**
    
-   ```sudo apt update```
-   ```sudo apt upgrade -y```
+   ```apt update```
+   ```apt upgrade -y```
    
    -**2. Instalar paquetes necesarios:** Docker requiere algunas dependencias adicionales, como apt-transport-https, ca-certificates, y curl. Estas permiten descargar paquetes de repositorios seguros y gestionar conexiones HTTPS:
    
@@ -82,20 +82,26 @@ Ingrese al terminal de la maquina virtual e ingrese los siguientes comandos:
 
    ```apt install docker-ce docker-ce-cli containerd.io -y```
 
-   -**Verificar la instalación de Docker:** Para comprobar que Docker se instaló correctamente, ejecuta:
+   **7. Verificar la instalación de Docker:** Para comprobar que Docker se instaló correctamente, ejecuta:
 
    ```docker --version```
 
-   -**Permitir que Docker se ejecute sin sudo:** Este paso permite ejecutar Docker sin usar sudo cada vez. Para hacerlo, agrega tu usuario al grupo de Docker:
+   -**8. Permitir que Docker se ejecute sin sudo:** Este paso permite ejecutar Docker sin usar sudo cada vez. Para hacerlo, agrega tu usuario al grupo de Docker:
 
    ```usermod -aG docker $USER```
 
 NOTA: Después de ejecutar este comando, cierra sesión o reinicia la máquina para que el cambio surta efecto.
 
+Instalacion de Docker Compose 
+   -**9. Descargar Docker Compose:** Permite gestionar y coordinar múltiples contenedores Docker, facilitando el despliegue de entornos complejos como nuestra red blockchain en un solo paso.
 
+```sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose```
 
-
-
+   -**10. Dar permisos de ejecución:** Permite que Docker Compose se ejecute como programa.
+   ```sudo chmod +x /usr/local/bin/docker-compose```
+   -**11. Verificacion final:** Para asegurarte de que Docker y Docker Compose funcionan correctamente:
+   ```docker --version```
+   ```docker-compose --version```
 
    
 
