@@ -76,7 +76,7 @@ La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como si
    </pre>
    -**1.2 Instalar paquetes necesarios:** Docker requiere algunas dependencias adicionales, como apt-transport-https, ca-certificates, y curl. Estas permiten descargar paquetes de repositorios seguros y gestionar conexiones HTTPS:
    <pre>
-   apt install apt-transport-https ca-certificates curl software-properties-common -y```
+   apt install apt-transport-https ca-certificates curl software-properties-common -y
    </pre>
    -**1.3 Agregar la clave GPG de Docker:** Esto permite que el sistema confíe en los paquetes de Docker que se van a instalar.
    <pre>
