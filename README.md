@@ -180,94 +180,84 @@ Hay que asegurarse de configurar 3 nombres de red diferentes
 **Lanzamiento de la red 1 y 2**
 
 Desde el directorio: ```cd org1```
-
-```minifab netup -e 7100 -o org1.example.com -i 2.2 -l nodo -s Couchdb```
-```minifab crear,unir -c channell1```
-``minifab install, approve, commit -n simple -l nodo -v 1.0 -p ' "init", "a", "200", "b", "300" '``
-
+<pre>
+minifab netup -e 7100 -o org1.example.com -i 2.2 -l nodo -s Couchdb
+minifab crear,unir -c channell1
+minifab install, approve, commit -n simple -l nodo -v 1.0 -p ' "init", "a", "200", "b", "300" '
+</pre>
 Desde el directorio: ``cd ../org3``
-
-``minifab netup -e 7300 -o org3.example.com -i 2.2 -l nodo -s couchdb``
-``minifab create,join -c channel2``
-``minifab install,approve,commit -n simple -l nodo -v 1.0 -p '"init", "a", "200", "b", "300"'``
-
+<pre>
+minifab netup -e 7300 -o org3.example.com -i 2.2 -l nodo -s couchdb
+minifab create,join -c channel2
+minifab install,approve,commit -n simple -l nodo -v 1.0 -p '"init", "a", "200", "b", "300"'
+</pre>
 **Red de lanzamiento 2**
 
 Desde el directorio ``cd ../org2`` 
-
-``minifab netup -e 7200 -o org2.example.com -i 2.2 -l nodo -s couchdb``
-
+<pre>
+minifab netup -e 7200 -o org2.example.com -i 2.2 -l nodo -s couchdb
+</pre>
 **Unirse a Network2 a los canales**
 
-``cd ../org1`` 
-``cp ../org2/vars/JoinRequest_org2-example-com.json ./vars/NewOrgJoinRequest.json``
-``minifab orgjoin,profilegen``
+Desde el directorio ``cd ../org1`` 
+<pre>
+cp ../org2/vars/JoinRequest_org2-example-com.json ./vars/NewOrgJoinRequest.json
+minifab orgjoin,profilegen
+</pre>
 
-``cd ../org3`` 
-``cp ../org2/vars/JoinRequest_org2-example-com.json ./vars/NewOrgJoinRequest.json``
-``minifab orgjoin,profilegen``
-
+Desde el directorio ``cd ../org3`` 
+<pre>
+cp ../org2/vars/JoinRequest_org2-example-com.json ./vars/NewOrgJoinRequest.json``
+minifab orgjoin,profilegen
+</pre>
 **Unir pares de Org2 a los canales**
 
 Desde el directorio``cd ../org2``
-
-``cp ../org1/vars/profiles/endpoints.yaml vars``
-``minifab nodeimport,join -c channel1``
-
-``cp ../org3/vars/profiles/endpoints.yaml vars``
-``minifab nodeimport,join -c channel2``
-
+<pre>
+cp ../org1/vars/profiles/endpoints.yaml vars
+minifab nodeimport,join -c channel1
+</pre>
+<pre>
+cp ../org3/vars/profiles/endpoints.yaml vars
+minifab nodeimport,join -c channel2
+</pre>
 **Instalar Chaincode en Org2**
-
-``minifab install,approve -n simple -v 1.0 -p ' "init", "a", "200", "b", "300" ' -c channel1``
-
-``cd ../org1``
-``minifab approve,discover,commit``
-
-``cd ../org3``
-``minifab approve,discover,commit``
+<pre>
+minifab install,approve -n simple -v 1.0 -p ' "init", "a", "200", "b", "300" ' -c channel1``
+</pre>
+Desde el directorio ``cd ../org1``
+<pre>
+   minifab approve,discover,commit
+</pre>
+Desde el diretorio ``cd ../org3``
+<pre>
+   minifab approve,discover,commit
+</pre>
 
 **Resultado esperado**
 
-``network3``
-
-``ca1.org3.example.com``
-
-``orderer2.example.com``
-
-``peer2.org3.example.com``
-
-``peer1.org3.example.com``
-
-``peer2.org3.example.com.couchdb``
-
-``peer1.org3.example.com.couchdb``
-
-``network2``
-
-``ca1.org2.example.com``
-
-``peer2.org2.example.com``
-
-``peer1.org2.example.com``
-
-``peer2.org2.example.com.couchdb``
-
-``peer1.org2.example.com.couchdb``
-
-``network1``
-
-``ca1.org1.example.com``
-
-``orderer1.example.com``
-
-``peer2.org1.example.com``
-
-``peer1.org1.example.com``
-
-``peer2.org1.example.com.couchdb``
-
-``peer1.org1.example.com.couchdb``
+<pre>
+network3
+ca1.org3.example.com
+orderer2.example.com
+peer2.org3.example.com
+peer1.org3.example.com
+peer2.org3.example.com.couchdb
+peer1.org3.example.com.couchdb
+network2
+ca1.org2.example.com
+peer2.org2.example.com
+peer1.org2.example.com
+peer2.org2.example.com.couchdb
+peer1.org2.example.com.couchdb
+network1
+ca1.org1.example.com
+orderer1.example.com
+peer2.org1.example.com
+peer1.org1.example.com
+peer2.org1.example.com.couchdb
+peer1.org1.example.com.couchdb
+</pre>
 
 
 
