@@ -1,8 +1,8 @@
 # Descripción del Proyecto
- 
+
 En Colombia, el sistema de salud enfrenta desafíos significativos en la continuidad de la atención médica, especialmente en zonas rurales donde la infraestructura y el personal son limitados. Los pacientes que requieren atención especializada suelen ser trasladados a hospitales de mayor nivel, ubicados en zonas urbanas, lo que incrementa los tiempos de espera y pone en riesgo su salud debido a la falta de interoperabilidad en la información clínica entre instituciones.
 
-Nuestro proyecto propone una solución  basada en tecnología blockchain para mejorar la interoperabilidad de Historias Clínicas Electrónicas (HCE) entre hospitales y clínicas en Colombia. Con esta red blockchain, se garantiza que la historia clínica de cada paciente esté disponible en tiempo real, accesible de forma segura y sin duplicación, independientemente de la ubicación geográfica de las instituciones de salud. La solución incluye un modelo predictivo que, a partir del análisis de datos en tiempo real, dirige a los pacientes al hospital más adecuado según su estado de salud y su EPS, asegurando así una atención continua y de calidad.
+Nuestro proyecto propone una solución basada en tecnología blockchain para mejorar la interoperabilidad de Historias Clínicas Electrónicas (HCE) entre hospitales y clínicas en Colombia. Con esta red blockchain, se garantiza que la historia clínica de cada paciente esté disponible en tiempo real, accesible de forma segura y sin duplicación, independientemente de la ubicación geográfica de las instituciones de salud. La solución incluye un sistema de recomendación que, a partir del análisis de datos, sugiere el hospital más adecuado según el estado de salud del paciente y su EPS, asegurando una atención continua y de calidad.
 
 Esta plataforma no solo optimiza los traslados y la asignación de recursos médicos, sino que también reduce errores y mejora la seguridad en el manejo de información clínica, ofreciendo una solución escalable y adaptable a las necesidades del sistema de salud colombiano.
 
@@ -20,36 +20,38 @@ Para validar la funcionalidad y efectividad de la solución, se ha implementado 
 2. **Simulación de los 3 Hospitales**:
    - **Distribución por Niveles de Atención**: Los hospitales simulados representan distintos niveles de atención (niveles 1, 2 y 3), lo cual permite observar el flujo y manejo de pacientes de acuerdo con la gravedad de sus condiciones y la disponibilidad de recursos.
    - **Datos Utilizados**: La simulación emplea datos reales obtenidos de fuentes de datos abiertos y del **Registro Especial de Prestadores de Servicios de Salud (REPS)** de MinSalud, lo cual permite asignar correctamente el nivel hospitalario y evaluar la interoperabilidad de la red blockchain.
-   - **Interacción en la Red**: A través de la simulación, los hospitales pueden intercambiar información sobre el estado de salud del paciente y su historia clínica. Si un hospital de nivel 1 recibe a un paciente en estado crítico, el modelo predictivo recomienda un traslado a un hospital de mayor nivel que cuente con los recursos necesarios.
+   - **Interacción en la Red**: A través de la simulación, los hospitales pueden intercambiar información sobre el estado de salud del paciente y su historia clínica. Si un hospital de nivel 1 recibe a un paciente en estado crítico, el sistema de recomendación sugiere el traslado a un hospital de mayor nivel que cuente con los recursos necesarios.
 
-3. **Modelos Predictivo y Descriptivo en Tiempo Real**:
-   - **Modelo Descriptivo**: Se desarrolló un modelo descriptivo para evaluar la cantidad de pacientes que requerían traslados según su EPS y el nivel de atención necesario. Este análisis se llevó a cabo usando datos de dos hospitales específicos, permitiendo identificar patrones en la demanda de atención de mayor complejidad.
-   - **Modelo Predictivo**: Analiza en tiempo real las necesidades de cada paciente, evaluando factores como su estado de salud actual, el tipo de atención requerida, y su EPS, para direccionarlo al hospital adecuado.
-   - **Integración con Blockchain**: Los resultados de ambos modelos se registran en la blockchain, asegurando que los datos de traslado y atención estén disponibles y sean confiables para todos los actores del sistema.
-   - **Optimización de Recursos**: Estos modelos permiten a los hospitales anticiparse a la recepción de pacientes, optimizando el uso de recursos médicos y reduciendo el tiempo de espera para los pacientes.
-
+3. **Sistema de Recomendación en Tiempo Real**:
+   - **Propósito**: Evaluar en tiempo real el estado de cada paciente y sugerir el hospital más adecuado para su traslado, tomando en cuenta factores como su estado de salud, el tipo de atención requerida y su EPS.
+   - **Métodos y Métricas**: Basado en reglas preestablecidas y datos históricos, el sistema de recomendación calcula el nivel de atención necesario y selecciona el hospital que cumple con esos requisitos, priorizando aquellos en estado crítico. Las métricas clave incluyen precisión en la asignación del hospital adecuado y tiempos estimados de traslado, mejorando la respuesta en la atención médica.
+   - **Impacto**: Este sistema optimiza los traslados y reduce los tiempos de espera, asegurando que cada paciente reciba la atención correcta en el hospital que cuenta con los recursos necesarios para su condición, mejorando así la continuidad y calidad de la atención en el sistema de salud.
 
 4. **Módulo de Seguridad y Autenticación**:
-   - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE, esa informacion en sacada de datos de minsalu, encontada tambien en el github `Datasets externos/Prestadores_Reps.csv`
+   - **Acceso Controlado**: La red blockchain emplea un sistema de autenticación robusto, donde solo instituciones verificadas pueden acceder a las HCE, con información sacada de datos de MinSalud y disponible en el archivo `Datasets externos/Prestadores_Reps.csv` en GitHub.
    - **Protección de Datos**: La blockchain protege los datos del paciente contra modificaciones no autorizadas, reduciendo el riesgo de pérdida de información durante los traslados.
 
-# Modelos Descriptivo y Predictivo
+# Sistema de Recomendación
 
-Nuestra solución incorpora dos modelos clave para analizar y optimizar el flujo de pacientes en el sistema de salud, aunque sólo el modelo predictivo se integra en la red blockchain:
+Nuestra solución incorpora un sistema de recomendación para analizar y optimizar el flujo de pacientes en el sistema de salud:
 
-1. **Modelo Descriptivo**:
-   - **Propósito**: Este modelo se desarrolló para evaluar la magnitud de la problemática, específicamente en cuanto a la cantidad de pacientes que requieren traslados según su EPS y el nivel de atención necesario. Se realizó un análisis de datos de dos hospitales, lo cual permite entender patrones en la demanda de atención de mayor complejidad y medir el impacto de la falta de recursos en la continuidad de la atención.
-   - **Métodos y Métricas**: A través de un análisis estadístico de los datos históricos, el modelo descriptivo mide la frecuencia de traslados y la correlación entre la EPS del paciente y los niveles de atención requeridos. Las métricas clave incluyen el porcentaje de pacientes trasladados y las especialidades con mayor demanda de traslado, proporcionando una visión detallada del problema.
-   - **Nota Importante**: Este modelo es solo para análisis y comprensión del contexto; **no se incorpora en la red blockchain**, ya que su propósito es explorar la magnitud de la situación actual.
-   - **Repositorio**: Puedes encontrar el modelo descriptivo en el archivo de GitHub titulado `Analisis_Descriptivo_de_Traslados_en_los_Hospitales.ipynb`.
+1. **Sistema Descriptivo**:
+   - **Propósito**: Evaluar la magnitud de la problemática en cuanto a la cantidad de pacientes que requieren traslados según su EPS y el nivel de atención necesario. Se realizó un análisis de datos de dos hospitales para entender patrones en la demanda de atención de mayor complejidad y medir el impacto de la falta de recursos en la continuidad de la atención.
+   - **Métodos y Métricas**: A través de un análisis estadístico de los datos históricos, se mide la frecuencia de traslados y la correlación entre la EPS del paciente y los niveles de atención requeridos. Las métricas clave incluyen el porcentaje de pacientes trasladados y las especialidades con mayor demanda de traslado, proporcionando una visión detallada del problema.
+   - **Nota Importante**: Este análisis es solo para entender el contexto; **no se incorpora en la red blockchain**, ya que su propósito es explorar la magnitud de la situación actual.
+   - **Repositorio**: Puedes encontrar el análisis descriptivo en el archivo de GitHub titulado `Analisis_Descriptivo_de_Traslados_en_los_Hospitales.ipynb`.
 
-2. **Modelo Predictivo**:
-   - **Propósito**: Basado en datos de tres hospitales, este modelo predictivo se integra en la red blockchain y analiza en tiempo real las necesidades de cada paciente. Su objetivo es sugerir el hospital adecuado para su traslado según su estado de salud, nivel de atención requerido y su EPS.
-   - **Métodos y Métricas**: el modelo predictivo evalúa la probabilidad de que un paciente requiera traslado, priorizando aquellos en estado crítico, para ello tambien usamos el dataset de los codigos diagnosticos `Datasets externos/TablaReferencia_CIE10__1.xlsx` Las métricas clave incluyen precisión en la asignación del hospital adecuado y tiempos estimados de traslado, mejorando la eficacia en la respuesta de atención médica.
-   - **Impacto**: Este modelo optimiza los traslados y reduce los tiempos de espera, asegurando que cada paciente reciba la atención correcta en el hospital que cuenta con los recursos necesarios para su condición, mejorando así la continuidad y calidad de la atención en el sistema de salud.
+2. **Sistema de Recomendación**:
+   - **Propósito**: Basado en datos de tres hospitales, este sistema de recomendación se integra en la red blockchain y analiza en tiempo real las necesidades de cada paciente. Su objetivo es sugerir el hospital adecuado para su traslado según su estado de salud, nivel de atención requerido y su EPS.
+   - **Métodos y Métricas**: El sistema evalúa la necesidad de traslado de cada paciente y selecciona el hospital que mejor cumpla con sus requerimientos. Las métricas clave incluyen precisión en la asignación del hospital adecuado y tiempos estimados de traslado.
+   - **Impacto**: Este sistema optimiza los traslados y reduce los tiempos de espera, asegurando que cada paciente reciba la atención correcta en el hospital con los recursos necesarios, mejorando la continuidad y calidad de la atención.
+
 # Dapp de Blockchain
+
 # Datos Utilizados 
+
 # Requisitos de Software y Herramientas
+
 # Instrucciones de Instalación y Ejecución
 
 
