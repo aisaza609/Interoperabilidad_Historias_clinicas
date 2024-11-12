@@ -62,6 +62,9 @@ Se priorizó la normalización de tres hospitales, seleccionados para representa
 ### Acceso a los Datasets en Google Drive
 
 Los datasets cargados y utilizados en el código están disponibles en la siguiente carpeta de Google Drive: [Carpeta de Datasets en Drive](https://drive.google.com/drive/folders/1g_g7nNmjAK4MWKhcBxZKm9-tgX4TQUld?usp=drive_link).
+**AVANCE**: La información ha sido normalizada para su envío en la blockchain, facilitando la interoperabilidad. Se evaluó el nivel hospitalario, el servicio requerido y la necesidad de traslado, asegurando la adecuada referencia de pacientes en la red.
+
+
 
 # Dapp de Blockchain
    -**Minifabric, instrucciones de Instalación y Ejecución.**
