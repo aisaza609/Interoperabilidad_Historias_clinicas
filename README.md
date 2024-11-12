@@ -33,18 +33,45 @@ Para validar la funcionalidad y efectividad de la solución, se ha implementado 
 
 # Dataset Usados y Preparacion de los Datos
 
-Nuestra solución incorpora un sistema de recomendación para analizar y optimizar el flujo de pacientes en el sistema de salud:
+## Datasets Utilizados
 
-1. **Sistema Descriptivo**:
-   - **Propósito**: Evaluar la magnitud de la problemática en cuanto a la cantidad de pacientes que requieren traslados según su EPS y el nivel de atención necesario. Se realizó un análisis de datos de dos hospitales para entender patrones en la demanda de atención de mayor complejidad y medir el impacto de la falta de recursos en la continuidad de la atención.
-   - **Métodos y Métricas**: A través de un análisis estadístico de los datos históricos, se mide la frecuencia de traslados y la correlación entre la EPS del paciente y los niveles de atención requeridos. Las métricas clave incluyen el porcentaje de pacientes trasladados y las especialidades con mayor demanda de traslado, proporcionando una visión detallada del problema.
-   - **Nota Importante**: Este análisis es solo para entender el contexto; **no se incorpora en la red blockchain**, ya que su propósito es explorar la magnitud de la situación actual.
-   - **Repositorio**: Puedes encontrar el análisis descriptivo en el archivo de GitHub titulado `Analisis_Descriptivo_de_Traslados_en_los_Hospitales.ipynb`.
+A continuación, se presentan los datasets utilizados en este proyecto para los distintos análisis y etapas de procesamiento de datos:
 
-2. **Sistema de Recomendación**:
-   - **Propósito**: Basado en datos de tres hospitales, este sistema de recomendación se integra en la red blockchain y analiza en tiempo real las necesidades de cada paciente. Su objetivo es sugerir el hospital adecuado para su traslado según su estado de salud, nivel de atención requerido y su EPS.
-   - **Métodos y Métricas**: El sistema evalúa la necesidad de traslado de cada paciente y selecciona el hospital que mejor cumpla con sus requerimientos. Las métricas clave incluyen precisión en la asignación del hospital adecuado y tiempos estimados de traslado.
-   - **Impacto**: Este sistema optimiza los traslados y reduce los tiempos de espera, asegurando que cada paciente reciba la atención correcta en el hospital con los recursos necesarios, mejorando la continuidad y calidad de la atención.
+1. **Dataset de Morbilidad en Itagüí**  
+   - **Enlace**: [Morbilidad por EAPB 2021 - ESE Hospital San Rafael Itagüí, Antioquia](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Morbilidad-por-EAPB-2021/echz-i3bm/data_preview)
+   - **Descripción**: Este dataset corresponde a los registros del ESE Hospital San Rafael en Itagüí, Antioquia, del año 2021. Fue utilizado específicamente para el análisis descriptivo en el archivo `Analisis_Descriptivo_de_Traslados_en_los_Hospitales.ipynb`.
+
+2. **Dataset de Remisiones de Pacientes en Pasto**  
+   - **Enlace**: [Remisiones de pacientes - Empresa Social del Estado Pasto Salud](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Remisiones-de-pacientes/emmz-uf6m/about_data)
+   - **Descripción**: Dataset proporcionado por la Empresa Social del Estado Pasto Salud. Fue también utilizado para el análisis descriptivo junto con el dataset de Itagüí, permitiendo identificar patrones en los traslados de pacientes en esta región.
+
+### Normalización de Datasets para Interoperabilidad
+
+Para garantizar una interoperabilidad eficaz entre los diferentes niveles de atención en los hospitales, se realizó un proceso de normalización de los datasets. Este proceso aseguró que todos los datasets tuvieran las mismas columnas y estructura, facilitando así una integración más fluida en el sistema.
+
+Además, durante la normalización, se realizó una asignación de servicios. Dependiendo del nivel de atención y el código de diagnóstico, se verificaba si había necesidad de traslado, priorizando la asignación de recursos médicos y optimizando la atención.
+
+### Datasets Utilizados para la Normalización en Cada Nivel de Hospital
+
+Para representar adecuadamente cada nivel de atención en el análisis, se priorizaron tres hospitales:
+
+1. **Hospital Departamental San Antonio, Pitalito (Nivel 2)**  
+   - **Enlace**: [Morbilidad urgencias - Hospital Pitalito](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Morbilidad-urgencias-Hospital-Pitalito/ekrt-9aay/about_data)
+   - **Descripción**: Este dataset corresponde al Hospital Departamental San Antonio en Pitalito, nivel 2. Fue incluido en el proceso de normalización para representar un hospital de nivel intermedio en el sistema de interoperabilidad.
+
+2. **Empresa Social del Estado Pasto Salud (Nivel 1)**  
+   - **Dataset Normalizado**: `Dataset de datos abiertos/Hospital_Pasto_v1.xlsx`
+   - **Descripción**: Este dataset representa a un hospital de nivel 1 y fue extraído del análisis descriptivo mencionado previamente. La versión normalizada del archivo fue utilizada para el proceso de interoperabilidad.
+
+3. **Hospital Universitario Hernando Moncaleano Perdomo, Neiva (Nivel 3)**  
+   - **Dataset Normalizado**: `Dataset de datos abiertos/Hospital_Pasto_v1.xlsx`
+   - **Descripción**: Este dataset representa al Hospital Universitario Hernando Moncaleano Perdomo en Neiva, que es un hospital de nivel 3. Su inclusión permite analizar la interoperabilidad en el nivel más avanzado de atención.
+
+### Acceso a los Datasets en Google Drive
+
+Los datasets utilizados en el código y en los análisis están disponibles en una carpeta compartida de Google Drive. Puedes acceder a ellos mediante el siguiente enlace:
+
+- [Carpeta de Datasets en Google Drive](https://drive.google.com/drive/folders/1g_g7nNmjAK4MWKhcBxZKm9-tgX4TQUld?usp=drive_link)
 
 # Dapp de Blockchain
    -**Minifabric**
