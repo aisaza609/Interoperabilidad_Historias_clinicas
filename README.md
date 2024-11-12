@@ -35,43 +35,33 @@ Para validar la funcionalidad y efectividad de la solución, se ha implementado 
 
 ## Datasets Utilizados
 
-A continuación, se presentan los datasets utilizados en este proyecto para los distintos análisis y etapas de procesamiento de datos:
+A continuación, se detallan los datasets utilizados hasta el momento en este proyecto:
 
-1. **Dataset de Morbilidad en Itagüí**  
-   - **Enlace**: [Morbilidad por EAPB 2021 - ESE Hospital San Rafael Itagüí, Antioquia](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Morbilidad-por-EAPB-2021/echz-i3bm/data_preview)
-   - **Descripción**: Este dataset corresponde a los registros del ESE Hospital San Rafael en Itagüí, Antioquia, del año 2021. Fue utilizado específicamente para el análisis descriptivo en el archivo `Analisis_Descriptivo_de_Traslados_en_los_Hospitales.ipynb`.
+- [Morbilidad por EAPB 2021 - ESE Hospital San Rafael Itagüí, Antioquia](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Morbilidad-por-EAPB-2021/echz-i3bm/data_preview): Este dataset corresponde a los datos del Hospital San Rafael en Itagüí, Antioquia, del año 2021. Fue empleado para el análisis descriptivo de traslados en el archivo [`Analisis_Descriptivo_de_Traslados_en_los_Hospitales.ipynb`](Analisis_Descriptivo_de_Traslados_en_los_Hospitales.ipynb).
 
-2. **Dataset de Remisiones de Pacientes en Pasto**  
-   - **Enlace**: [Remisiones de pacientes - Empresa Social del Estado Pasto Salud](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Remisiones-de-pacientes/emmz-uf6m/about_data)
-   - **Descripción**: Dataset proporcionado por la Empresa Social del Estado Pasto Salud. Fue también utilizado para el análisis descriptivo junto con el dataset de Itagüí, permitiendo identificar patrones en los traslados de pacientes en esta región.
+- [Remisiones de pacientes - Empresa Social del Estado Pasto Salud](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Remisiones-de-pacientes/emmz-uf6m/about_data): Este dataset pertenece a la Empresa Social del Estado Pasto Salud y también se usó en el análisis descriptivo de traslados.
 
-### Normalización de Datasets para Interoperabilidad
+### Normalización de los Datasets
 
-Para garantizar una interoperabilidad eficaz entre los diferentes niveles de atención en los hospitales, se realizó un proceso de normalización de los datasets. Este proceso aseguró que todos los datasets tuvieran las mismas columnas y estructura, facilitando así una integración más fluida en el sistema.
+Para garantizar una interoperabilidad eficiente y homogénea, se realizó un proceso de normalización en los datasets de cada hospital, asegurando que todos contaran con las mismas columnas. También se asignaron servicios específicos a cada caso, y dependiendo del nivel de atención, se verificó si había necesidad de traslado según el código diagnóstico.
 
-Además, durante la normalización, se realizó una asignación de servicios. Dependiendo del nivel de atención y el código de diagnóstico, se verificaba si había necesidad de traslado, priorizando la asignación de recursos médicos y optimizando la atención.
+Se priorizó la normalización de tres hospitales, seleccionados para representar cada nivel de atención. Los datasets específicos y el proceso de normalización aplicado en cada uno están descritos a continuación:
 
-### Datasets Utilizados para la Normalización en Cada Nivel de Hospital
+1. **Hospital Departamental San Antonio, Pitalito** (Nivel 2):
+   - Dataset: [Morbilidad urgencias - Hospital Pitalito](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Morbilidad-urgencias-Hospital-Pitalito/ekrt-9aay/about_data)
+   - Proceso de normalización: Disponible en [`Normalizacion_Dataset_pitalito__Hospitalarios.ipynb`](Normalizacion_Dataset_pitalito__Hospitalarios.ipynb).
 
-Para representar adecuadamente cada nivel de atención en el análisis, se priorizaron tres hospitales:
+2. **Empresa Social del Estado Pasto Salud** (Nivel 1):
+   - Dataset resultante del análisis descriptivo: [`Dataset de datos abiertos/Hospital_Pasto_v1.xlsx`](Dataset%20de%20datos%20abiertos/Hospital_Pasto_v1.xlsx).
+   - Proceso de normalización: Disponible en [`Normalizacion_Dataset_Pasto.ipynb`](Normalizacion_Dataset_Pasto.ipynb).
 
-1. **Hospital Departamental San Antonio, Pitalito (Nivel 2)**  
-   - **Enlace**: [Morbilidad urgencias - Hospital Pitalito](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Morbilidad-urgencias-Hospital-Pitalito/ekrt-9aay/about_data)
-   - **Descripción**: Este dataset corresponde al Hospital Departamental San Antonio en Pitalito, nivel 2. Fue incluido en el proceso de normalización para representar un hospital de nivel intermedio en el sistema de interoperabilidad.
-
-2. **Empresa Social del Estado Pasto Salud (Nivel 1)**  
-   - **Dataset Normalizado**: `Dataset de datos abiertos/Hospital_Pasto_v1.xlsx`
-   - **Descripción**: Este dataset representa a un hospital de nivel 1 y fue extraído del análisis descriptivo mencionado previamente. La versión normalizada del archivo fue utilizada para el proceso de interoperabilidad.
-
-3. **Hospital Universitario Hernando Moncaleano Perdomo, Neiva (Nivel 3)**  
-   - **Dataset Normalizado**: `Dataset de datos abiertos/Hospital_Pasto_v1.xlsx`
-   - **Descripción**: Este dataset representa al Hospital Universitario Hernando Moncaleano Perdomo en Neiva, que es un hospital de nivel 3. Su inclusión permite analizar la interoperabilidad en el nivel más avanzado de atención.
+3. **Hospital Universitario Hernando Moncaleano Perdomo, Neiva**:
+   - Dataset: [Perfil de morbilidad](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Perfil-de-morbilidad/5c4n-qdbv/about_data)
+   - Proceso de normalización: Disponible en [`Normalizacion_Dataset_Neiva.ipynb`](Normalizacion_Dataset_Neiva.ipynb).
 
 ### Acceso a los Datasets en Google Drive
 
-Los datasets utilizados en el código y en los análisis están disponibles en una carpeta compartida de Google Drive. Puedes acceder a ellos mediante el siguiente enlace:
-
-- [Carpeta de Datasets en Google Drive](https://drive.google.com/drive/folders/1g_g7nNmjAK4MWKhcBxZKm9-tgX4TQUld?usp=drive_link)
+Los datasets cargados y utilizados en el código están disponibles en la siguiente carpeta de Google Drive: [Carpeta de Datasets en Drive](https://drive.google.com/drive/folders/1g_g7nNmjAK4MWKhcBxZKm9-tgX4TQUld?usp=drive_link).
 
 # Dapp de Blockchain
    -**Minifabric**
