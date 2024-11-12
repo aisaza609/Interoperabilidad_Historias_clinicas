@@ -69,7 +69,8 @@ Los datasets cargados y utilizados en el código están disponibles en la siguie
 # Instrucciones de Instalación y Ejecución
 La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como sistema operativo.En este proyecto, Docker se utiliza para crear y gestionar un entorno de contenedores que permita desplegar la red blockchain de forma aislada y replicable. Esto asegura que todos los componentes necesarios se ejecuten en un entorno controlado, independientemente de las configuraciones individuales del sistema anfitrión. A continuación se detallan los pasos para replicar el entorno de instalación en este sistema.
 1. Ingrese al terminal de la maquina virtual e ingrese los siguientes comandos:
-   -**1.1 Actualizar los paquetes del sistema:**
+   
+-**1.1 Actualizar los paquetes del sistema:**
    <pre>
    apt update
    apt upgrade -y
