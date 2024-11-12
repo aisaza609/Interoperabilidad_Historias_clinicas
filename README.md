@@ -83,24 +83,24 @@ La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como si
    -**1.4 Agregar el repositorio de Docker:** Este paso configura el repositorio de Docker para que se pueda instalar la versión más reciente.
    <pre>
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-</pre>
+   </pre>
    -**1.5 Actualizar los paquetes nuevamente:** Después de agregar el repositorio, actualiza la lista de paquetes.
-<pre>
+   <pre>
    apt update
-</pre>
+   </pre>
    -**1.6 Instalar Docker:** Ahora, instala Docker y Docker Compose para gestionar los contenedores en los que se ejecutará la red blockchain.
-<pre>
+   <pre>
    apt install docker-ce docker-ce-cli containerd.io -y```
-</pre>
+   </pre>
    **1.7 Verificar la instalación de Docker:** Para comprobar que Docker se instaló correctamente, ejecuta:
-<pre>
+   <pre>
    docker --version
-</pre>
+   </pre>
 
    -**1.8 Permitir que Docker se ejecute sin sudo:** Este paso permite ejecutar Docker sin usar sudo cada vez. Para hacerlo, agrega tu usuario al grupo de Docker:
-<pre>
+   <pre>
    usermod -aG docker $USER```
-</pre>
+   </pre>
 #NOTA: Después de ejecutar este comando, cierra sesión o reinicia la máquina para que el cambio surta efecto.
 
 Instalacion de Docker Compose 
