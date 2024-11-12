@@ -122,97 +122,60 @@ Instalacion de Docker Compose
 
    -**2.1 Definiremos las 3 redes de la siguiente manera:** nuevamente abriremos o en el mismo terminal que tenemos abierto usaremos 3 directorios org1, org2 y org3.Una red se define usando el spec.yamlarchivo . Es muy recomendable descargar el archivo de [plantilla del repositorio de Github de Minifabric](https://github.com/hyperledger-labs/minifabric/blob/main/spec.yaml) y editarlo de la siguiente manera:
    **cat ./org1/spec.yaml**
-``
-```fabric:```
+<pre>
+fabric:
+  cas:
+  - "ca1.org1.example.com"
+  peers: 
+  - "peer1.org1.example.com"
+  - "peer2.org1.example.com"
+  orderers:
+  - "orderer1.example.com"
+  settings:
+    ca:
+      FABRIC_LOGGING_SPEC: DEBUG
+    peer:
+      FABRIC_LOGGING_SPEC: DEBUG
+    orderer:
+      FABRIC_LOGGING_SPEC: DEBUG
+  netname: "network1"
+</pre>
 
-  ```cas:```
-  
-  ```- "ca1.org1.example.com"```
-  
-  ```peers:```
-  
-  ```- "peer1.org1.example.com"```
-  
-  ```- "peer2.org1.example.com"```
-  
-  ```orderers:```
-  
-  ```- "orderer1.example.com"```
-  
-  ```settings:```
-  
-    ```ca:```
-    
-      ```FABRIC_LOGGING_SPEC: DEBUG```
-      
-   ```peer:```
-   
-      ```FABRIC_LOGGING_SPEC: DEBUG```
-      
-    ```orderer:```
-    
-      ```FABRIC_LOGGING_SPEC: DEBUG```
-      
-  ```netname: "network1"```
-  ``
   
    **cat ./org2/spec.yaml**
-```fabric:```
-
-  ```cas:```
-  
-  ```- "ca1.org2.example.com"```
-  
-  ```peers:``` 
-  
-  ```- "peer1.org2.example.com"```
-  
-  ```- "peer2.org2.example.com"```
-  
-  ```settings:```
-  
-    ```ca:```
-    
-      ```FABRIC_LOGGING_SPEC: DEBUG```
-      
-    ```peer:```
-    
-      ```FABRIC_LOGGING_SPEC: DEBUG```
-      
-  ```netname: "network2"```
-  
+   <pre>
+fabric:
+  cas:
+  - "ca1.org2.example.com"
+  peers: 
+  - "peer1.org2.example.com"
+  - "peer2.org2.example.com"
+  settings:
+    ca:
+      FABRIC_LOGGING_SPEC: DEBUG
+    peer:
+      FABRIC_LOGGING_SPEC: DEBUG
+  netname: "network2"
+  </pre>
    **cat ./org3/spec.yaml**
-```fabric:```
-
-  ```cas:```
-  
-  ```- "ca1.org3.example.com"```
-  
-  ```peers:``` 
-  
-  ```- "peer1.org3.example.com"```
-  
-  ```- "peer2.org3.example.com"```
-  
-  ```orderers:```
-  
-  ```- "orderer2.example.com"```
-  
-  ```settings:```
-  
-    ```ca:```
-      ```FABRIC_LOGGING_SPEC: DEBUG```
-      
-    ```peer:```
-    
-      ```FABRIC_LOGGING_SPEC: DEBUG```
-      
-    ```orderer:```
-    
-      ```FABRIC_LOGGING_SPEC: DEBUG```
-      
-  ```netname: "network3"```
-  
+   <pre>
+fabric:
+  cas:
+  - "ca1.org3.example.com"
+  peers: 
+  - "peer1.org3.example.com"
+  - "peer2.org3.example.com"
+  orderers:
+  - "orderer2.example.com"
+  settings:
+    ca:
+      FABRIC_LOGGING_SPEC: DEBUG
+    peer:
+      FABRIC_LOGGING_SPEC: DEBUG
+    orderer:
+      FABRIC_LOGGING_SPEC: DEBUG
+  netname: "network3"
+  </pre>
 Hay que asegurarse de configurar 3 nombres de red diferentes
 **Lanzamiento de la red 1 y 2**
 
