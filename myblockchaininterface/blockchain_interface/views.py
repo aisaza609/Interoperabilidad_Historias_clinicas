@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+def home(request):
+    return render(request, 'blockchain_interface/home.html')
+
 def view_records(request):
     return render(request, 'blockchain_interface/view_records.html')
 
