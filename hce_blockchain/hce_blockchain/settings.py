@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gestion_hce',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = '/login/'           # Ruta a la vista de login
+LOGIN_REDIRECT_URL = '/'         # Redirección después de un login exitoso
+LOGOUT_REDIRECT_URL = '/login/'  # Redirección después de un logout
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
