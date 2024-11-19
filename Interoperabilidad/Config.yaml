@@ -2,6 +2,6 @@
     KeepUp: "keepup" 
     SmartContract: "Healthcare"
     SCFolder: "C:\\Users\\Asus\\OneDrive\\Documentos\\GitHub\\Datos_a_la_U_grupo_2\\Interoperabilidad\\sc.go"
-    SmartContractGO: "go\\cs.go"
+    SmartContractGO: "go\\sc.go"
     SmartContractJS: "js\\lib\\smartSweets.js"
     Version: 1.0
