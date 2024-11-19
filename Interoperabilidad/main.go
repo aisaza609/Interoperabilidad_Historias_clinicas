@@ -22,9 +22,8 @@ import (
 	"strconv"
 	"unicode"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	"github.com/montanaflynn/stats"
+	"github.com/hyperledger/fabric-chaincode-go/shim"
+	pb "github.com/hyperledger/fabric-protos-go/peer"
 )
 
 var wd float64 = 0.0

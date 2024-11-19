@@ -1,12 +1,15 @@
 package main
-//hola
+
 // Importamos los paquetes necesarios
 import (
-	"bytes"                            // Para manejar buffers de bytes
-	"fmt"                              // Para imprimir mensajes en la consola
-	"strconv"                          // Para convertir valores a diferentes tipos
-	"github.com/hyperledger/fabric/core/chaincode/shim" // Interfaz shim para el chaincode
-	pb "github.com/hyperledger/fabric/protos/peer"      // Protocolo peer para responder a las solicitudes
+	"bytes" // Para manejar buffers de bytes
+	"fmt"   // Para imprimir mensajes en la consola
+
+	// Para convertir valores a diferentes tipos
+
+	"github.com/hyperledger/fabric-chaincode-go/shim"
+	pb "github.com/hyperledger/fabric-protos-go/peer"
+	// Protocolo peer para responder a las solicitudes
 )
 
 // Definimos la estructura principal del contrato inteligente
@@ -62,8 +65,8 @@ func (t *HealthcareChaincode) registerIPS(stub shim.ChaincodeStubInterface, args
 	}
 
 	// Asignamos los argumentos a variables descriptivas
-	ipsID := args[0]  // Primer argumento: ID de la IPS
-	ipsName := args[1]  // Segundo argumento: Nombre de la IPS
+	ipsID := args[0]   // Primer argumento: ID de la IPS
+	ipsName := args[1] // Segundo argumento: Nombre de la IPS
 
 	// Verificamos si la IPS ya está registrada
 	ipsAsBytes, err := stub.GetState(ipsID)
@@ -92,9 +95,9 @@ func (t *HealthcareChaincode) registerPatient(stub shim.ChaincodeStubInterface, 
 	}
 
 	// Asignamos los argumentos a variables descriptivas
-	patientID := args[0]  // ID del paciente
-	patientName := args[1]  // Nombre del paciente
-	ipsID := args[2]  // ID de la IPS asociada
+	patientID := args[0]   // ID del paciente
+	patientName := args[1] // Nombre del paciente
+	ipsID := args[2]       // ID de la IPS asociada
 
 	// Verificamos si el paciente ya está registrado
 	patientAsBytes, err := stub.GetState(patientID)
@@ -134,7 +137,7 @@ func (t *HealthcareChaincode) queryPatient(stub shim.ChaincodeStubInterface, arg
 		return shim.Error("Número incorrecto de argumentos. Se requiere 1: ID del paciente")
 	}
 
-	patientID := args[0]  // ID del paciente
+	patientID := args[0] // ID del paciente
 
 	// Obtenemos los datos del paciente desde el ledger
 	patientAsBytes, err := stub.GetState(patientID)
@@ -156,8 +159,8 @@ func (t *HealthcareChaincode) updatePatient(stub shim.ChaincodeStubInterface, ar
 		return shim.Error("Número incorrecto de argumentos. Se requieren 2: ID del paciente y nuevos datos")
 	}
 
-	patientID := args[0]         // ID del paciente
-	newData := args[1]           // Nuevos datos en formato JSON o cadena de texto
+	patientID := args[0] // ID del paciente
+	newData := args[1]   // Nuevos datos en formato JSON o cadena de texto
 
 	// Verificamos si el paciente ya está registrado
 	patientAsBytes, err := stub.GetState(patientID)
@@ -185,7 +188,7 @@ func (t *HealthcareChaincode) getPatientHistory(stub shim.ChaincodeStubInterface
 		return shim.Error("Número incorrecto de argumentos. Se requiere 1: ID del paciente")
 	}
 
-	patientID := args[0]  // ID del paciente
+	patientID := args[0] // ID del paciente
 
 	// Obtenemos el historial de cambios de la clave del paciente
 	resultsIterator, err := stub.GetHistoryForKey(patientID)
