@@ -1,0 +1,7 @@
+- Details:
+    KeepUp: "keepup" 
+    SmartContract: "Sweets"
+    SCFolder: "D:\\HyperLedger\\Go\\ChainCodes"
+    SmartContractGO: "go\\main.go"
+    SmartContractJS: "js\\lib\\smartSweets.js"
+    Version: 1.0
