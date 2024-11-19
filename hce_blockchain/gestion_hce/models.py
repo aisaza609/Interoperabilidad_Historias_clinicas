@@ -1,12 +1,20 @@
+# models.py
 from django.db import models
-from django.contrib.auth.models import User
 
 class Paciente(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    fecha_nacimiento = models.DateField()
-    historia_clinica = models.TextField()
-
+    tipo_documento = models.CharField(max_length=10)
+    numero_documento = models.CharField(max_length=20, unique=True)
+    edad = models.IntegerField(default=0)
+    eps = models.CharField(max_length=50)
+    
     def __str__(self):
-        return f"{self.nombre} {self.apellido}"
+        return self.nombre
+
+class RegistroMedico(models.Model):
+    paciente = models.ForeignKey(Paciente, related_name='registros', on_delete=models.CASCADE)
+    fecha = models.DateField()
+    descripcion = models.TextField()
+    
+    def __str__(self):
+        return f"Registro de {self.paciente.nombre} - {self.fecha}"

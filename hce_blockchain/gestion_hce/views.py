@@ -47,3 +47,20 @@ def ver_historico_paciente(request, paciente_id):
 @login_required
 def consultar_paciente(request):
     return render(request, 'consultar_paciente.html')
+# views.py
+from django.shortcuts import render
+
+def consultar_paciente(request):
+    # Paciente de prueba
+    pacientes = [
+        {
+            'id': 1,
+            'nombre': "Paciente Prueba",
+            'tipo_documento': "CC",
+            'numero_documento': "123456789",
+            'edad': 30,
+            'eps': "EPS Prueba"
+        }
+    ]
+    
+    return render(request, 'consultar_paciente.html', {'pacientes': pacientes})

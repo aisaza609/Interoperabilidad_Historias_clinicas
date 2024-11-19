@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Paciente - Gestión de Historias Clínicas</title>
+    <style>
+        /* Configuración general */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+
+        /* Encabezado */
+        .header {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .header p {
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Contenedor principal */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Contenedor de información y registro */
+        .patient-info, .record-form, .record-table {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        /* Información del paciente */
+        .patient-info h2, .record-form h2 {
+            color: #003366;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Campos de entrada */
+        .input-field {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .input-field input, .input-field textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .input-field input:focus, .input-field textarea:focus {
+            border-color: #1A73E8;
+        }
+        .input-field label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        textarea {
+            resize: vertical;
+        }
+
+        /* Botones */
+        .button {
+            padding: 10px 15px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #1A73E8;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .button:hover {
+            background-color: #0b5ed7;
+        }
+
+        .back-button {
+            background-color: #ff4d4f;
+            color: #fff;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #e43b3d;
+        }
+
+        /* Tabla de registros */
+        .record-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .record-table th, .record-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .record-table th {
+            background-color: #003366;
+            color: #fff;
+            font-weight: bold;
+        }
+        .record-table td {
+            background-color: #f9f9f9;
+        }
+
+        /* Pie de página */
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: #fff;
+            padding: 10px;
+            background-color: #003366;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <div class="header">
+        <h1>Gestión de Historias Clínicas</h1>
+        <p>Actualización de Paciente</p>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+
+        <!-- Información del paciente -->
+        <div class="patient-info">
+            <h2>Información del Paciente</h2>
+            <p><strong>Nombre:</strong> {{ paciente.nombre }}</p>
+            <p><strong>Tipo de Documento:</strong> {{ paciente.tipo_documento }}</p>
+            <p><strong>Número de Documento:</strong> {{ paciente.numero_documento }}</p>
+            <p><strong>Edad:</strong> {{ paciente.edad }}</p>
+            <p><strong>EPS:</strong> {{ paciente.eps }}</p>
+        </div>
+
+        <!-- Formulario de nuevo registro -->
+        <div class="record-form">
+            <h2>Añadir Registro al Historial</h2>
+            <form method="post" action="{% url 'agregar_registro' paciente.id %}">
+                {% csrf_token %}
+                <div class="input-field">
+                    <label for="fecha">Fecha del Registro</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="input-field">
+                    <label for="descripcion">Descripción del Registro</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Detalles del registro" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="button">Añadir Registro</button>
+            </form>
+        </div>
+
+        <!-- Tabla de registros existentes -->
+        <div class="record-table">
+            <h2>Historial de Registros</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.fecha }}</td>
+                        <td>{{ registro.descripcion }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2" style="text-align: center;">No hay registros disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Botón de volver al menú principal -->
+        <a href="{% url 'home' %}" class="back-button">Volver al Menú Principal</a>
+
+    </div>
+
+    <!-- Pie de página -->
+    <div class="footer">
+        <p>&copy; 2024 Gestión de Historias Clínicas - Todos los derechos reservados</p>
+    </div>
+
+</body>
+</html>
