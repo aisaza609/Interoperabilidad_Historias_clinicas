@@ -59,7 +59,7 @@ def deploychaincode():
     fu.copytree(SCFolder, BCFolder)
     chaincodefolder(new=True)
     fu.copytree(SCFolder, os.getcwd() + "\\chaincode")
-    ##fu.installchaincodes(version=fu.vrs)
+    fu.installchaincodes(version=fu.vrs)
 
 
 def chaincodefolder(new):

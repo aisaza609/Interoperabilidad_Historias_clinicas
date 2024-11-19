@@ -30,6 +30,7 @@ def consolExec(command, verbose = True):
     if verbose:
         if process.find('failed=0') == -1:
             MS.printed(message="FAILED", colour=Fore.RED, style=Style.BRIGHT)
+            MS.printed(message=process, colour=Fore.RED, style=Style.BRIGHT)
             sys.exit()
         else:
             MS.printed(message="SUCCESSFULL", colour=Fore.GREEN, style=Style.BRIGHT)
