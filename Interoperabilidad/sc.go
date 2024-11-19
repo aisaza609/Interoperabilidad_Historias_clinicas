@@ -218,6 +218,6 @@ func (t *HealthcareChaincode) getPatientHistory(stub shim.ChaincodeStubInterface
 	}
 	historyBuffer.WriteString("]")
 
-	// Retornamos el historial de cambios como JSON
+	// Retornamos el historial de cambios como JSON.
 	return shim.Success(historyBuffer.Bytes())
 }
