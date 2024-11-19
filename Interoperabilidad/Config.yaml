@@ -1,7 +1,7 @@
 - Details:
     KeepUp: "keepup" 
-    SmartContract: "Sweets"
-    SCFolder: "D:\\HyperLedger\\Go\\ChainCodes"
-    SmartContractGO: "go\\main.go"
+    SmartContract: "Healthcare"
+    SCFolder: "C:\\Users\\Asus\\OneDrive\\Documentos\\GitHub\\Datos_a_la_U_grupo_2\\Interoperabilidad\\sc.go"
+    SmartContractGO: "go\\cs.go"
     SmartContractJS: "js\\lib\\smartSweets.js"
     Version: 1.0
