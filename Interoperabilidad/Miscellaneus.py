@@ -24,14 +24,19 @@ import warnings
 warnings.filterwarnings('ignore')
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+deliveredReg = 0
+badTransaction = 0
 SCFolder = ""
 BCFolder = ""
+FTPdir = ""
+FTPName = ""
+FTPPass = ""
 # a_host = ftputil.FTPHost('93.188.167.110', 'dulcesFTP', 'UsuarioDulces')
 sensors = []
 var1 = ""
 var2 = ""
 var3 = ""
-SmartContractGO = ""
+
 
 bar = [
     "[=       ]",
@@ -54,7 +59,7 @@ kup = ""
 
 
 def deploychaincode():
-    printed(message="TRANSFERRING THE CHAINCODES TO THE BLOCKCHAIN INSTALLATION FOLDER",
+    printed(message="TRANSFERRING THE CHAINCODE TO THE BLOCKCHAIN INSTALLATION FOLDER",
                 colour=Fore.LIGHTWHITE_EX, style=Style.BRIGHT)
     fu.copytree(SCFolder, BCFolder)
     chaincodefolder(new=True)
@@ -129,22 +134,7 @@ def fileloader(Path):
         for line in data:
             file.write(line.replace(';', '\n'))
         file.close()
-    return filelist
-
-
-def dataframeLoader(Path):
-    filenames = listdir(Path)
-    filelist = []
-    for idx, item in enumerate(filenames):
-        filenames[idx] = Path + "\\" + item
-        if ".csv" in filenames[idx]:
-            filelist.append(filenames[idx])
-    colnames = ['Data']
-    df_list = [pd.read_csv(file, sep=';', names=colnames,
-                            decimal='.', index_col=False, header=None) for file in filelist]
-    # print("\n", len(df_list), "files were loaded\n")
-
-    return df_list
+    return file
 
 
 def zeroadd(number):
@@ -208,71 +198,97 @@ def hypertx(command):
         return 1
 
 
-def transaction():
-    fileList = []
-    prList = []
-    rdList = []
-    rd = True
-
-    if os.path.exists(os.getcwd() + "\\" + 'ProcessedFiles.txt'):
-        with open(os.getcwd() + "\\" + 'ProcessedFiles.txt') as f:
-            prList = f.readlines()
-    else:
-        rd = False
-
-    a_host = ftputil.FTPHost(FTPdir, FTPName, FTPPass)
-
-    for (dirname, subdirs, files) in a_host.walk("/home/dulcesFTP"):  # directory
-        for f in files:
-            if f.endswith('csv'):
-                fileList.append(f)
-
-    for i in range(len(fileList)):
-        printed(message="PROCESSING FILE " + str(i + 1) + " OUT OF " +
-                         str(len(fileList)) + " / FILE: " + fileList[i], colour=Fore.MAGENTA, style=Style.BRIGHT)
-        if rd == True and fileList[i] not in prList:
-            rdata(fileList[i])
-            rdList.append(fileList[i])
-        elif not rd:
-            rdata(fileList[i])
-            rdList.append(fileList[i])
-
-    with open('ProcessedFiles.txt', 'a') as f:
-        for item in rdList:
-            f.write("%s\n" % item)
-
-    fileList.clear()
-    prList.clear()
-    rdList.clear()
-
-
-def sentTx(row):
-    scvar1 = "Sensor_" + str(row['SensorId']) + "_date"
-    scvar2 = "Sensor_" + str(row['SensorId']) + "_temp"
-    scvar3 = "Sensor_" + str(row['SensorId']) + "_rh"
-    cmd = "\"invoke\",\"" + scvar1 + "\"" + ",\"" + str(
-        row['Time']) + "\"," + "\"" + scvar2 + "\"" + ",\"" + str(
-        row['Temperature']) + "\"," + "\"" + scvar3 + "\"" + ",\"" + str(row['Humidity']) + "\""
+def updatePatient(id, newData):
+    cmd = "\"updatePatient\",\"{id}\",\"{newData}\""
     command = ["minifab.cmd", "invoke", "-n", fu.cctipo, "-p", cmd]
     if hypertx(command) == 0:
         printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
         sys.exit()
+    else:
+        printed(message="PATIENT DATA UPDATED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
+
+
+def registerIPS(id, name):
+    cmd = "\"registerIPS\",\"" + id + "\",\"" + name + "\""
+    command = ["minifab.cmd", "invoke", "-n", fu.cctipo, "-p", cmd]
+    if hypertx(command) == 0:
+        printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
+        sys.exit()
+    else:
+        printed(message="IPS REGISTERED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
 
 
 
-def find_csv_filenames(path_to_dir, suffix=".csv"):
-    filenames = listdir(path_to_dir)
-    return [filename for filename in filenames if filename.endswith(suffix)]
+def getPatientHistory(id):
+    path = os.getcwd()
+    folder = os.path.join(path, f"Patient_{id}_history")
+    if not os.path.isdir(folder):
+        os.makedirs(folder)
+    printed(message="FETCHING PATIENT HISTORY, PLEASE WAIT...", colour=Fore.CYAN, style=Style.BRIGHT)
+    
+    cmd = f"\"getPatientHistory\",\"{id}\""
+    command = ["minifab.cmd", "invoke", "-n", fu.cctipo, "-p", cmd]
+    process, error = subprocess.Popen(
+        command, universal_newlines=True,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+
+    filename = os.path.join(folder, f"Patient_History_ID_{id}.txt")
+    with open(filename, "w") as file:
+        file.writelines(process)
+    
+    printed(message="PATIENT HISTORY SAVED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
 
 
-def loaddata():
-    directory = os.getcwd()
-    filenames = find_csv_filenames(directory)
-    datasets = (pd.read_csv(file) for file in filenames)
-    return filenames, datasets
+def queryPatient(id):
+    path = os.getcwd()
+    folder = os.path.join(path, f"Patient_{id}_latest")
+    if not os.path.isdir(folder):
+        os.makedirs(folder)
+    printed(message="FETCHING PATIENT DATA, PLEASE WAIT...", colour=Fore.CYAN, style=Style.BRIGHT)
+
+    cmd = f"\"queryPatient\",\"{id}\""
+    command = ["minifab.cmd", "invoke", "-n", fu.cctipo, "-p", cmd]
+    process, error = subprocess.Popen(
+        command, universal_newlines=True,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+
+    filename = os.path.join(folder, f"Patient_ID_{id}.txt")
+    with open(filename, "w") as file:
+        file.writelines(process)
+    
+    printed(message="PATIENT DATA SAVED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
+
+def registerPatient(id, name, ipsID):
+    cmd = f"\"registerPatient\",\"{id}\",\"{name}\",\"{ipsID}\""
+    command = ["minifab.cmd", "invoke", "-n", fu.cctipo, "-p", cmd]
+    if hypertx(command) == 0:
+        printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
+        sys.exit()
+    else:
+        printed(message="PATIENT REGISTERED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
 
 
-def uniq(lista):
-    x = np.array(lista)
-    sensorlist = np.unique(x)
-    return sensorlist.tolist()
+def writelatest(chaincode, var, folder):
+    cmd = "\"latest\",\"" + var + "\""
+    command = ["minifab.cmd", "invoke", "-n", chaincode, "-p", cmd]
+    process, error = subprocess.Popen(
+        command, universal_newlines=True,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+
+    filename = folder + '\\Patient_ID_' + var + '.txt'
+    file = open(filename, "w")
+    file.writelines(process)
+    file.close()
+
+
+def writehisyory2(chaincode, var, folder):
+    cmd = "\"history\",\"" + var + "\""
+    command = ["minifab.cmd", "invoke", "-n", chaincode, "-p", cmd]
+    process, error = subprocess.Popen(
+        command, universal_newlines=True,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+
+    filename = folder + '\\Patient_History_ID_' + var + '.txt'
+    file = open(filename, "w")
+    file.writelines(process)
+    file.close()

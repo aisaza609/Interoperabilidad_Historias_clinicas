@@ -11,7 +11,6 @@ def load_config():
         with open("Config.yaml", "r") as yamlfile:
             data = yaml.load(yamlfile, Loader=yaml.FullLoader)
             MS.printed(message="CONFIGURATION FILE LOADED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
-            print(MS.__file__)
             return data[0]['Details']
     except FileNotFoundError:
         MS.printed(message="CONFIG FILE NOT FOUND!", colour=Fore.RED, style=Style.BRIGHT)
