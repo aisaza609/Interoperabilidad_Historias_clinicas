@@ -35,7 +35,7 @@ def consolExec(command, verbose = True):
         else:
             MS.printed(message="SUCCESSFULL", colour=Fore.GREEN, style=Style.BRIGHT)
             # sys.stdout.write("... DONE")
- 
+
 
 def consolExec2(command):
     process, error = subprocess.Popen(
@@ -73,15 +73,15 @@ def deploybcnet():
     command = ["minifab.cmd", "explorerup"]
     consolExec(command)
 
-    ##MS.printed(message="DEPLOYING METRICS TOOLS USING PROMETHEUS", colour=Fore.LIGHTWHITE_EX, style=Style.BRIGHT)
-    ##command = ["docker", "rm", "-f", "$(docker ps -a -q)"]
-    ##consolExec(command, verbose=False)
+    MS.printed(message="DEPLOYING METRICS TOOLS USING PROMETHEUS", colour=Fore.LIGHTWHITE_EX, style=Style.BRIGHT)
+    command = ["docker", "rm", "-f", "$(docker ps -a -q)"]
+    consolExec(command, verbose=False)
 
-    ##command = ["docker-compose", "-f", "docker-monitoring.yaml", "up", "-d"]
-    ##consolExec(command, verbose=False)
+    command = ["docker-compose", "-f", "docker-monitoring.yaml", "up", "-d"]
+    consolExec(command, verbose=False)
 
-    ##command = ["docker", "network", "connect", "mysite", "prometheus"]
-    ##consolExec(command, verbose=False)
+    command = ["docker", "network", "connect", "mysite", "prometheus"]
+    consolExec(command, verbose=False)
     
     MS.printed(message="DEPLOYMENT COMPLETED", colour=Fore.GREEN, style=Style.BRIGHT)
 

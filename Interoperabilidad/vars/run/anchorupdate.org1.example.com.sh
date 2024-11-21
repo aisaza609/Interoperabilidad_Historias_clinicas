@@ -10,8 +10,8 @@ export CORE_PEER_ADDRESS=192.168.0.10:7004
 export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
 export CORE_PEER_LOCALMSPID=org1-example-com
 export CORE_PEER_MSPCONFIGPATH=/vars/keyfiles/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export ORDERER_ADDRESS=192.168.0.10:7008
-export ORDERER_TLS_CA=/vars/keyfiles/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/ca.crt
+export ORDERER_ADDRESS=192.168.0.10:7006
+export ORDERER_TLS_CA=/vars/keyfiles/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/ca.crt
 
 # 1. Fetch the channel configuration
 peer channel fetch config config_block.pb -o $ORDERER_ADDRESS \

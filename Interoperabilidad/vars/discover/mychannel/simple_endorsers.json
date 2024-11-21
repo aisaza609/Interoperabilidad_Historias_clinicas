@@ -3,22 +3,22 @@
   "EndorsersByGroups": {
     "G0": [
       {
-        "MSPID": "org1-example-com",
-        "Endpoint": "192.168.0.10:7004"
-      },
-      {
-        "MSPID": "org1-example-com",
-        "Endpoint": "192.168.0.10:7005"
-      }
-    ],
-    "G1": [
-      {
         "MSPID": "org0-example-com",
         "Endpoint": "192.168.0.10:7002"
       },
       {
         "MSPID": "org0-example-com",
         "Endpoint": "192.168.0.10:7003"
+      }
+    ],
+    "G1": [
+      {
+        "MSPID": "org1-example-com",
+        "Endpoint": "192.168.0.10:7005"
+      },
+      {
+        "MSPID": "org1-example-com",
+        "Endpoint": "192.168.0.10:7004"
       }
     ]
   },

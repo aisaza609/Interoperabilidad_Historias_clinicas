@@ -6,8 +6,8 @@ export FABRIC_CFG_PATH=/vars
 
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_ID=cli
-export CORE_PEER_ADDRESS=192.168.0.10:7003
-export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org0.example.com/peers/peer2.org0.example.com/tls/ca.crt
+export CORE_PEER_ADDRESS=192.168.0.10:7002
+export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org0.example.com/peers/peer1.org0.example.com/tls/ca.crt
 export CORE_PEER_LOCALMSPID=org0-example-com
 export CORE_PEER_MSPCONFIGPATH=/vars/keyfiles/peerOrganizations/org0.example.com/users/Admin@org0.example.com/msp
 export ORDERER_ADDRESS=192.168.0.10:7006
@@ -23,7 +23,7 @@ configtxlator proto_decode --input config_block.pb --type common.Block \
 echo "--<<-->>--"
 
 # 3. Update the current config in json with the organization anchor peer we want to add
-jq '.channel_group.groups.Application.groups."org0-example-com".values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "192.168.0.10","port": 7003}]},"version": "0"}}' mychannel_current_config.json > mychannel_modified_anchor_config.json
+jq '.channel_group.groups.Application.groups."org0-example-com".values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "192.168.0.10","port": 7002}]},"version": "0"}}' mychannel_current_config.json > mychannel_modified_anchor_config.json
 
 # 4. Translate the current config in json format to protobuf format
 configtxlator proto_encode --input mychannel_current_config.json \

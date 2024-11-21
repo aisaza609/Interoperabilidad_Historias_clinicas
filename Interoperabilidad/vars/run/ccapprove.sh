@@ -6,8 +6,8 @@ export CORE_PEER_ADDRESS=192.168.0.10:7003
 export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org0.example.com/peers/peer2.org0.example.com/tls/ca.crt
 export CORE_PEER_LOCALMSPID=org0-example-com
 export CORE_PEER_MSPCONFIGPATH=/vars/keyfiles/peerOrganizations/org0.example.com/users/Admin@org0.example.com/msp
-export ORDERER_ADDRESS=192.168.0.10:7006
-export ORDERER_TLS_CA=/vars/keyfiles/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/ca.crt
+export ORDERER_ADDRESS=192.168.0.10:7007
+export ORDERER_TLS_CA=/vars/keyfiles/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/ca.crt
 
 peer lifecycle chaincode queryinstalled -O json | jq -r '.installed_chaincodes | .[] | select(.package_id|startswith("simple_1.0:"))' > ccstatus.json
 
@@ -42,9 +42,9 @@ export CORE_PEER_ADDRESS=192.168.0.10:7002
 # fi
 
 export CORE_PEER_LOCALMSPID=org1-example-com
-export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/ca.crt
+export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
 export CORE_PEER_MSPCONFIGPATH=/vars/keyfiles/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export CORE_PEER_ADDRESS=192.168.0.10:7005
+export CORE_PEER_ADDRESS=192.168.0.10:7004
 
 # approved=$(peer lifecycle chaincode checkcommitreadiness --channelID mychannel \
 #   --name simple --version 1.0 --init-required --sequence $SEQUENCE --tls \

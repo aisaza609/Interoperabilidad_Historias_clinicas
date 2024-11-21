@@ -10,7 +10,7 @@ discover endorsers --peerTLSCA $PEER_TLS_ROOTCERT_FILE \
   --userKey $ADMINPRIVATEKEY \
   --userCert $ADMINCERT \
   --MSP org0-example-com --channel mychannel \
-  --server 192.168.0.10:7003 \
+  --server 192.168.0.10:7002 \
   --chaincode simple | jq '.[0]' | \
   jq 'del(.. | .Identity?)' | jq 'del(.. | .LedgerHeight?)' \
   > /vars/discover/mychannel_simple_endorsers.json
@@ -19,4 +19,4 @@ discover config --peerTLSCA $PEER_TLS_ROOTCERT_FILE \
   --userKey $ADMINPRIVATEKEY \
   --userCert $ADMINCERT \
   --MSP org0-example-com --channel mychannel \
-  --server 192.168.0.10:7003 > /vars/discover/mychannel_config.json
+  --server 192.168.0.10:7002 > /vars/discover/mychannel_config.json

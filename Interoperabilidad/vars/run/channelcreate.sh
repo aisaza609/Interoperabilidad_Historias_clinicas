@@ -12,7 +12,7 @@ export CORE_PEER_ADDRESS=192.168.0.10:7003
 export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org0.example.com/peers/peer2.org0.example.com/tls/ca.crt
 export CORE_PEER_LOCALMSPID=org0-example-com
 export CORE_PEER_MSPCONFIGPATH=/vars/keyfiles/peerOrganizations/org0.example.com/users/Admin@org0.example.com/msp
-export ORDERER_ADDRESS=192.168.0.10:7006
-export ORDERER_TLS_CA=/vars/keyfiles/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/ca.crt
+export ORDERER_ADDRESS=192.168.0.10:7007
+export ORDERER_TLS_CA=/vars/keyfiles/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/ca.crt
 peer channel create -c testchannel -f testchannel.tx -o $ORDERER_ADDRESS \
   --cafile $ORDERER_TLS_CA --tls

@@ -7,8 +7,9 @@ import (
 
 	// Para convertir valores a diferentes tipos
 
-	"github.com/hyperledger/fabric-chaincode-go/shim" // Interfaz shim para el chaincode
-	pb "github.com/hyperledger/fabric-protos-go/peer" // Protocolo peer para responder a las solicitudes
+	"github.com/hyperledger/fabric-chaincode-go/shim"
+	pb "github.com/hyperledger/fabric-protos-go/peer"
+	// Protocolo peer para responder a las solicitudes
 )
 
 // Definimos la estructura principal del contrato inteligente

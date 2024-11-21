@@ -1,7 +1,7 @@
 - Details:
     KeepUp: "keepup" 
     SmartContract: "Healthcare"
-    SCFolder: "C:\\Users\\Asus\\OneDrive\\Documentos\\GitHub\\Datos_a_la_U_grupo_2\\Interoperabilidad\\Hyperledger\\ChainCodes"
+    SCFolder: "C:\\Users\\Asus\\Documents\\GitHub\\Datos_a_la_U_grupo_2\\Interoperabilidad\\Hyperledger\\ChainCodes"
     SmartContractGO: ""
     SmartContractJS: ""
     Version: 1.0

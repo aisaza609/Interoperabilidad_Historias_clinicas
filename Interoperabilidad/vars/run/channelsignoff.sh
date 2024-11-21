@@ -6,12 +6,12 @@ export FABRIC_CFG_PATH=/vars
 
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_ID=cli
-export CORE_PEER_ADDRESS=192.168.0.10:7003
-export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org0.example.com/peers/peer2.org0.example.com/tls/ca.crt
+export CORE_PEER_ADDRESS=192.168.0.10:7002
+export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org0.example.com/peers/peer1.org0.example.com/tls/ca.crt
 export CORE_PEER_LOCALMSPID=org0-example-com
 export CORE_PEER_MSPCONFIGPATH=/vars/keyfiles/peerOrganizations/org0.example.com/users/Admin@org0.example.com/msp
-export ORDERER_ADDRESS=192.168.0.10:7006
-export ORDERER_TLS_CA=/vars/keyfiles/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/ca.crt
+export ORDERER_ADDRESS=192.168.0.10:7008
+export ORDERER_TLS_CA=/vars/keyfiles/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/ca.crt
 
 # 1. Fetch the channel configuration
 peer channel fetch config config_block.pb -o $ORDERER_ADDRESS \
@@ -54,9 +54,9 @@ export CORE_PEER_ADDRESS=192.168.0.10:7003
 peer channel signconfigtx -f testchannel_update_envelope.pb
 
 export CORE_PEER_LOCALMSPID=org1-example-com
-export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/ca.crt
+export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
 export CORE_PEER_MSPCONFIGPATH=/vars/keyfiles/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export CORE_PEER_ADDRESS=192.168.0.10:7005
+export CORE_PEER_ADDRESS=192.168.0.10:7004
 
 peer channel signconfigtx -f testchannel_update_envelope.pb
 
