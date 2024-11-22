@@ -16,16 +16,25 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 ##andrea
 init(convert=True)
 
-with open("Config.yaml", "r") as yamlfile:
-    data = yaml.load(yamlfile, Loader=yaml.FullLoader)
-    MS.printed(message="CONFIGURATION FILE LOADED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
+def load_config():
+    """Carga las configuraciones desde Config.yaml"""
+    try:
+        with open("Config.yaml", "r") as yamlfile:
+            data = yaml.load(yamlfile, Loader=yaml.FullLoader)
+            MS.printed(message="CONFIGURATION FILE LOADED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
+        MS.kup = data[0]['Details']['KeepUp']
+        MS.fu.cctipo = data[0]['Details']['SmartContract']
+        MS.SCFolder = data[0]['Details']['SCFolder']
+        MS.fu.vrs = data[0]['Details']['Version']
+    except FileNotFoundError:
+        MS.printed(message="CONFIG FILE NOT FOUND!", colour=Fore.RED, style=Style.BRIGHT)
+        sys.exit(1)
+    except yaml.YAMLError as exc:
+        MS.printed(message=f"ERROR IN CONFIG FILE: {exc}", colour=Fore.RED, style=Style.BRIGHT)
+        sys.exit(1)
 
-MS.kup = data[0]['Details']['KeepUp']
-MS.fu.cctipo = data[0]['Details']['SmartContract']
-MS.SCFolder = data[0]['Details']['SCFolder']
-MS.SmartContractGO = MS.fu.cctipo+"\\"+data[0]['Details']['SmartContractGO']
-MS.SmartContractJS = MS.fu.cctipo+"\\"+data[0]['Details']['SmartContractJS']
-MS.fu.vrs = data[0]['Details']['Version']
+
+load_config()
 
 if MS.process_exists('Docker Desktop.exe'):
     MS.printed(message="DOCKER IS UP", colour=Fore.GREEN, style=Style.BRIGHT)
@@ -50,8 +59,6 @@ file2 = os.path.dirname(os.path.realpath(__file__)) + '\\vars\\chaincode'
 random.seed(1)
 
 MS.BCFolder = os.getcwd()+"\\vars\\chaincode"
-MS.SmartContractGO = os.getcwd()+"\\chaincode\\"+MS.SmartContractGO
-MS.SmartContractJS = os.getcwd()+"\\chaincode\\"+MS.SmartContractJS
 
 if os.path.isdir(file2):
     if os.path.isdir(file1):
@@ -67,8 +74,3 @@ else:
     MS.printed(message="BLOCKCHAIN NETWORK DO NOT SEEMS TO BE DEPLOYED", colour=Fore.YELLOW, style=Style.BRIGHT)
     MS.fu.deploybcnet()
     MS.deploychaincode()
-
-# MS.sentTx()
-# MS.transaction2()
-# MS.savehistory()
-# MS.closeProgram()

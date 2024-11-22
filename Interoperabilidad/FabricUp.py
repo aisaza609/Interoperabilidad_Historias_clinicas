@@ -30,7 +30,6 @@ def consolExec(command, verbose = True):
     if verbose:
         if process.find('failed=0') == -1:
             MS.printed(message="FAILED", colour=Fore.RED, style=Style.BRIGHT)
-            MS.printed(message=process, colour=Fore.RED, style=Style.BRIGHT)
             sys.exit()
         else:
             MS.printed(message="SUCCESSFULL", colour=Fore.GREEN, style=Style.BRIGHT)
@@ -45,7 +44,7 @@ def consolExec2(command):
 
 def deploybcnet():
     MS.printed(message="DEPLOYING THE NETWORK", colour=Fore.LIGHTWHITE_EX, style=Style.BRIGHT)
-    command = ["minifab.cmd", "up", "-e", "true"]
+    command = ["minifab.cmd", "up", "-e", "true", "-i", "2.2"]
     consolExec(command)
 
     MS.printed(message="CREATING THE TEST CHANNEL", colour=Fore.LIGHTWHITE_EX, style=Style.BRIGHT)

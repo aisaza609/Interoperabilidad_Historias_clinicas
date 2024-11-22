@@ -11,7 +11,10 @@ def load_config():
         with open("Config.yaml", "r") as yamlfile:
             data = yaml.load(yamlfile, Loader=yaml.FullLoader)
             MS.printed(message="CONFIGURATION FILE LOADED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
-            return data[0]['Details']
+        MS.kup = data[0]['Details']['KeepUp']
+        MS.fu.cctipo = data[0]['Details']['SmartContract']
+        MS.SCFolder = data[0]['Details']['SCFolder']
+        MS.fu.vrs = data[0]['Details']['Version']
     except FileNotFoundError:
         MS.printed(message="CONFIG FILE NOT FOUND!", colour=Fore.RED, style=Style.BRIGHT)
         sys.exit(1)
@@ -34,7 +37,7 @@ def main():
     args = parser.parse_args()
 
     # Cargamos configuraciones
-    config = load_config()
+    load_config()
 
     # Lógica basada en los argumentos
     if args.rp:

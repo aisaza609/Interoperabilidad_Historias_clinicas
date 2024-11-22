@@ -188,11 +188,19 @@ def closeProgram():
     sys.exit()
 
 
+def errorprint(process):
+    for item in process.split("\n"):
+        if "Error:" in item:
+            printed(message=item.strip(), colour=Fore.RED, style=Style.BRIGHT)
+
+
 def hypertx(command):
     process, error = subprocess.Popen(
         command, universal_newlines=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+
     if process.find('failed=0') == -1:
+        errorprint(process)
         return 0
     else:
         return 1
@@ -202,7 +210,7 @@ def updatePatient(id, newData):
     cmd = "\"updatePatient\",\"{id}\",\"{newData}\""
     command = ["minifab.cmd", "invoke", "-n", fu.cctipo, "-p", cmd]
     if hypertx(command) == 0:
-        printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
+        #printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
         sys.exit()
     else:
         printed(message="PATIENT DATA UPDATED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
@@ -212,7 +220,7 @@ def registerIPS(id, name):
     cmd = "\"registerIPS\",\"" + id + "\",\"" + name + "\""
     command = ["minifab.cmd", "invoke", "-n", fu.cctipo, "-p", cmd]
     if hypertx(command) == 0:
-        printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
+        #printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
         sys.exit()
     else:
         printed(message="IPS REGISTERED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
@@ -262,7 +270,7 @@ def registerPatient(id, name, ipsID):
     cmd = f"\"registerPatient\",\"{id}\",\"{name}\",\"{ipsID}\""
     command = ["minifab.cmd", "invoke", "-n", fu.cctipo, "-p", cmd]
     if hypertx(command) == 0:
-        printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
+        #printed(message="ERROR! SMART CONTRACT NOT WORKING PROPERLY", colour=Fore.RED, style=Style.BRIGHT)
         sys.exit()
     else:
         printed(message="PATIENT REGISTERED SUCCESSFULLY", colour=Fore.GREEN, style=Style.BRIGHT)
@@ -274,7 +282,7 @@ def writelatest(chaincode, var, folder):
     process, error = subprocess.Popen(
         command, universal_newlines=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-
+    errorprint(process)
     filename = folder + '\\Patient_ID_' + var + '.txt'
     file = open(filename, "w")
     file.writelines(process)
@@ -287,7 +295,7 @@ def writehisyory2(chaincode, var, folder):
     process, error = subprocess.Popen(
         command, universal_newlines=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-
+    errorprint(process)
     filename = folder + '\\Patient_History_ID_' + var + '.txt'
     file = open(filename, "w")
     file.writelines(process)
