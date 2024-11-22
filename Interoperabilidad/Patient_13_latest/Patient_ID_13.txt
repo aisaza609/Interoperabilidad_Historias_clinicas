@@ -1,0 +1,35 @@
+Using default spec file
+Minifab Execution Context:
+    FABRIC_RELEASE=2.2
+    CHANNEL_NAME=testchannel
+    PEER_DATABASE_TYPE=golevel
+    CHAINCODE_LANGUAGE=go
+    CHAINCODE_NAME=Healthcare
+    CHAINCODE_VERSION=1.0
+    CHAINCODE_INIT_REQUIRED=true
+    CHAINCODE_PARAMETERS="queryPatient","13"
+    CHAINCODE_PRIVATE=false
+    CHAINCODE_POLICY=
+    TRANSIENT_DATA=
+    BLOCK_NUMBER=newest
+    EXPOSE_ENDPOINTS=true
+    CURRENT_ORG=org0.example.com
+    HOST_ADDRESSES=172.20.10.9,255.255.255.240
+    TARGET_ENV=DOCKER
+    WORKING_DIRECTORY: C:/Users/Asus/Documents/GitHub/Datos_a_la_U_grupo_2/Interoperabilidad
+.....
+[1m# Preparing for the following operations: *********************[0m
+  [0;32mverify options, cc invoke[0m
+.......
+[1m# Running operation: ******************************************[0m
+  [0;32mverify options[0m
+..
+[1m# Running operation: ******************************************[0m
+  [0;32mcc invoke[0m
+..............
+[1m# Run the chaincode invoke script on cli container ************[0m
+  [0;31mnon-zero return code[0m
+  [0;31mError: endorsement failure during invoke. response: status:500 message:"El paciente no est\303\241 registrado"[0m
+
+[1m# STATS *******************************************************[0m
+[0;31mminifab: ok=32	failed=1	[0m

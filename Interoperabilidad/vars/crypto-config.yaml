@@ -1,0 +1,52 @@
+---
+OrdererOrgs:
+  - Name: example.com
+    Domain: example.com
+    Specs:
+      - Hostname: orderer1
+        SANS:
+          - 172.20.10.9
+      - Hostname: orderer2
+        SANS:
+          - 172.20.10.9
+      - Hostname: orderer3
+        SANS:
+          - 172.20.10.9
+
+PeerOrgs:
+  - Name: org0.example.com
+    Domain: org0.example.com
+    EnableNodeOUs: true
+    CA:
+      Hostname: ca1
+      CommonName: ca1.org0.example.com
+      Country: US
+      Province: North Carolina
+      Locality: Raleigh
+    Specs:
+      - Hostname: peer1
+        CommonName: peer1.org0.example.com
+        SANS:
+          - 172.20.10.9
+      - Hostname: peer2
+        CommonName: peer2.org0.example.com
+        SANS:
+          - 172.20.10.9
+  - Name: org1.example.com
+    Domain: org1.example.com
+    EnableNodeOUs: true
+    CA:
+      Hostname: ca1
+      CommonName: ca1.org1.example.com
+      Country: US
+      Province: North Carolina
+      Locality: Raleigh
+    Specs:
+      - Hostname: peer1
+        CommonName: peer1.org1.example.com
+        SANS:
+          - 172.20.10.9
+      - Hostname: peer2
+        CommonName: peer2.org1.example.com
+        SANS:
+          - 172.20.10.9
