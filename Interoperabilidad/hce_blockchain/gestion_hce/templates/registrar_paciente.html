@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Paciente - Gestión de Historias Clínicas</title>
+    <style>
+        /* Configuración general */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+
+        /* Encabezado */
+        .header {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .header p {
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Contenedor principal */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Caja de registro de paciente */
+        .register-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .register-box h2 {
+            font-size: 1.8em;
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        /* Campos de entrada */
+        .input-field {
+            width: 100%;
+            margin: 15px 0;
+            text-align: left;
+        }
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-field input, .input-field select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .input-field input:focus, .input-field select:focus {
+            border-color: #1A73E8;
+        }
+
+        /* Botones */
+        .button, .back-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .button {
+            background-color: #1A73E8;
+        }
+        .button:hover {
+            background-color: #0b5ed7;
+        }
+
+        .back-button {
+            background-color: #ff4d4f;
+        }
+        .back-button:hover {
+            background-color: #e43b3d;
+        }
+
+        /* Pie de página */
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: #fff;
+            padding: 10px;
+            background-color: #003366;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <div class="header">
+        <h1>Gestión de Historias Clínicas</h1>
+        <p>Bienvenido al sistema de gestión de Historias Clínicas Electrónicas de las IPS.</p>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="register-box">
+            <h2>Registrar Paciente</h2>
+            <form method="post">
+                {% csrf_token %}
+                
+                <!-- Tipo de documento -->
+                <div class="input-field">
+                    <label for="tipo_documento">Tipo de Documento</label>
+                    <select id="tipo_documento" name="tipo_documento" required>
+                        <option value="CC">Cédula de Ciudadanía (CC)</option>
+                        <option value="TI">Tarjeta de Identidad (TI)</option>
+                        <option value="CE">Cédula de Extranjería (CE)</option>
+                    </select>
+                </div>
+
+                <!-- Número de documento -->
+                <div class="input-field">
+                    <label for="numero_documento">Número de Documento</label>
+                    <input type="text" id="numero_documento" name="numero_documento" placeholder="Número de documento" required>
+                </div>
+
+                <!-- EPS del paciente -->
+                <div class="input-field">
+                    <label for="eps">EPS del Paciente</label>
+                    <input type="text" id="eps" name="eps" placeholder="EPS del paciente" required>
+                </div>
+
+                <!-- Edad -->
+                <div class="input-field">
+                    <label for="edad">Edad</label>
+                    <input type="number" id="edad" name="edad" placeholder="Edad" required>
+                </div>
+
+                <!-- Municipio de residencia -->
+                <div class="input-field">
+                    <label for="municipio">Municipio de Residencia</label>
+                    <input type="text" id="municipio" name="municipio" placeholder="Municipio de residencia" required>
+                </div>
+
+                <!-- Género -->
+                <div class="input-field">
+                    <label for="genero">Género</label>
+                    <select id="genero" name="genero" required>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                        <option value="O">Otro</option>
+                    </select>
+                </div>
+                
+                <!-- Botón de registro -->
+                <button type="submit" class="button">Registrar Paciente</button>
+            </form>
+
+            <!-- Botón de volver al menú principal -->
+            <a href="{% url 'home' %}" class="back-button">Volver al Menú Principal</a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <div class="footer">
+        <p>&copy; 2024 Gestión de Historias Clínicas - Todos los derechos reservados</p>
+    </div>
+
+</body>
+</html>
