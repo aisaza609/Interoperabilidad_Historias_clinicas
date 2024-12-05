@@ -64,7 +64,20 @@ Se priorizó la normalización de tres hospitales, seleccionados para representa
 Los datasets cargados y utilizados en el código están disponibles en la siguiente carpeta de Google Drive: [Carpeta de Datasets en Drive](https://drive.google.com/drive/folders/1g_g7nNmjAK4MWKhcBxZKm9-tgX4TQUld?usp=drive_link).
 **AVANCE**: La información ha sido normalizada para su envío en la blockchain, facilitando la interoperabilidad. Se evaluó el nivel hospitalario, el servicio requerido y la necesidad de traslado, asegurando la adecuada referencia de pacientes en la red. los demas datasets no han sido normalizados debido a que Hyperleger Fabric debe garantizar la interoperabilidad,sin importar el formato de los datos, asi podemos observar los dos escenarios cuando los formatos de dos instituciones no son compatibles.
 
-   -*Minifabric, instrucciones de Instalación y Ejecución.*
+#Red blockchain
+En el archivo interoperabilidad.zip esta la red blockchain montada para ejecutarla se deben realizar los siguientes pasos:
+1. Descargar Docker desktop cualquier version
+2. Descargar go 1.21.6 https://go.dev/dl/
+3. Una vez instalados los servicios vamos a la carpeta, verificamos que no este la carpeta vars, si esta, la eliminamos. En la carpeta go donde esta el contrato inteligente verificamos que solo se encuentre el archivo de origen go si hay mas debemos eliminarlos. Estos archivos se borran ya que son del anterior despliegue y genera conflictos al mantenerlos.
+4. El primer paso a seguir para desplegar la red en nustro ordenador es: en el terminal con la carpeta donde esta el contrato inteligente, por ejemplo: "C:\Users\Asus\Documents\GitHub\Datos_a_la_U_grupo_2\Interoperabilidad\Hyperledger\ChainCodes\Healthcare\go"
+corremos los siguientes codigos para la implementacion del contrato inteligente:
+         go mod init main.go
+         go mod tiny
+         go build main.go
+5. Despues de esto corremos el archivo main.py y nos pedira importar diferentes librerias, una vez hecho esto en esa carpeta corremos el codigo ./minifab cleanup para hacer una limpieza una vez hecho esto procederemos a correr el archivo main.py y demorara unos minutos en desplegar la red.
+6. Finalmente, una vez la red desplegada corremos el archivo senttransaction donde nos aparecera una "Guia" de como ejecutar las transacciones, un ejemplo de resgitro de paciente es el siguiente: python SentTransaction.py -rp 15155121 danilo 789, "python SentTransaction.py" se mantiene lo unico que cambia es el -c, -sispro, etc, dependiendo de lo que queramos hacer.
+
+# Minifabric, instrucciones de Instalación y Ejecución.
 La red fue montada en una máquina virtual utilizando Ubuntu 24.04.1 LTS como sistema operativo.En este proyecto, Docker se utiliza para crear y gestionar un entorno de contenedores que permita desplegar la red blockchain de forma aislada y replicable. Esto asegura que todos los componentes necesarios se ejecuten en un entorno controlado, independientemente de las configuraciones individuales del sistema anfitrión. A continuación se detallan los pasos para replicar el entorno de instalación en este sistema linux.
 1. Ingrese al terminal del ordenador e ingrese los siguientes comandos:
    
