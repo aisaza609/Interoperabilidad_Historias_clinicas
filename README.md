@@ -64,7 +64,7 @@ Se priorizó la normalización de tres hospitales, seleccionados para representa
 Los datasets cargados y utilizados en el código están disponibles en la siguiente carpeta de Google Drive: [Carpeta de Datasets en Drive](https://drive.google.com/drive/folders/1g_g7nNmjAK4MWKhcBxZKm9-tgX4TQUld?usp=drive_link).
 **AVANCE**: La información ha sido normalizada para su envío en la blockchain, facilitando la interoperabilidad. Se evaluó el nivel hospitalario, el servicio requerido y la necesidad de traslado, asegurando la adecuada referencia de pacientes en la red. los demas datasets no han sido normalizados debido a que Hyperleger Fabric debe garantizar la interoperabilidad,sin importar el formato de los datos, asi podemos observar los dos escenarios cuando los formatos de dos instituciones no son compatibles.
 
-#Red blockchain
+# Red blockchain
 En el archivo interoperabilidad.zip esta la red blockchain montada para ejecutarla se deben realizar los siguientes pasos:
 1. Descargar Docker desktop cualquier version
 2. Descargar go 1.21.6 https://go.dev/dl/
